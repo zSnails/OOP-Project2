@@ -21,8 +21,6 @@ public class HiddenNumberGame implements iJuego {
     public HiddenNumberGame() {
     }
 
-
-
     private int nuevoNumero() {
         return rand.nextInt(MAX_NUM);
     }
@@ -47,7 +45,7 @@ public class HiddenNumberGame implements iJuego {
 
     @Override
     public String getDescripcion() {
-        return "";
+        return "Un juego sobre adivinar un número oculto";
     }
 
 }
