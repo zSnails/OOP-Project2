@@ -1,11 +1,19 @@
 package com.zsnails.poo;
 
-import javax.swing.JButton;
+import com.zsnails.GameCenter.GameCenter;
+import com.zsnails.hiddenNumber.HiddenNumberGameUI;
+import com.zsnails.player.Player;
 
 public class App {
-    JButton[] juegos = {};
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
-        
+        Player zeta = new Player("Nigger dog", "menganito");
+        HiddenNumberGameUI e = new HiddenNumberGameUI();
+        GameCenter center = new GameCenter(zeta, e);
+
+        center.setVisible(true);
     }
 }

@@ -6,7 +6,6 @@ package com.zsnails.hiddenNumber;
 
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
-import com.zsnails.game.iJugador;
 import java.time.LocalDate;
 import java.util.Random;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -223,6 +222,8 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego {
         this.startDate = LocalDate.now();
         LabelName.setText(jugador.getNombre());
         this.setVisible(true);
+
+        showMessageDialog(this, "Bienvenid@ " + jugador.getNombre());
     }
 
     @Override
@@ -237,7 +238,6 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego {
 
     @Override
     public String getDescripcion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "algo breve";
     }
 }
