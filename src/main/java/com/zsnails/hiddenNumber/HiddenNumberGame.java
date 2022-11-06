@@ -9,24 +9,19 @@ import java.util.Random;
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
 
-public class HiddenNumberGame extends JPanel implements iJuego {
+public class HiddenNumberGame implements iJuego {
 
     private Random rand = new Random();
     private int numeroOculto = 0;
 
     public final int MAX_NUM = 100;
 
-    private JTextField guess = new JTextField("Pinga marrai");
     private iJugador jugador = null;
 
     public HiddenNumberGame() {
     }
 
-    private void initUI() {
-        guess.setSize(500, 20);
-        this.setVisible(true);
-        this.add(guess);
-    }
+
 
     private int nuevoNumero() {
         return rand.nextInt(MAX_NUM);
@@ -37,8 +32,6 @@ public class HiddenNumberGame extends JPanel implements iJuego {
         this.jugador = jugador;
 
         this.numeroOculto = nuevoNumero();
-
-        this.initUI();
 
     }
 
