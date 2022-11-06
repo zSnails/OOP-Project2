@@ -35,7 +35,7 @@ public class HiddenNumberGame implements iJuego {
 
     @Override
     public void terminarPartida() {
-        // TODO: almacenar la picha esta del jugador nigger dog
+        // TODO: almacenar la picha esta del jugador dog
     }
 
     @Override

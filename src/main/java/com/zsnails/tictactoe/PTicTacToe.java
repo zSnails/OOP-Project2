@@ -51,13 +51,13 @@ public class PTicTacToe extends JPanel implements ActionListener, iJuego {
         turn++;
         for (JButton b : board) {
             if (evt.getSource() == b) {
-                b.setText("nigger dog");
+                b.setText("dog");
                 b.setEnabled(false);
             }
         }
 
         if (turn == 9) {
-            System.out.println("nigger dog");
+            System.out.println("dog");
         }
     }
 

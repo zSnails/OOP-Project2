@@ -10,7 +10,7 @@ public class App {
      * @param args
      */
     public static void main(String[] args) {
-        Player zeta = new Player("Nigger dog", "menganito");
+        Player zeta = new Player("dog", "menganito");
         HiddenNumberGameUI e = new HiddenNumberGameUI();
         GameCenter center = new GameCenter(zeta, e);
 
