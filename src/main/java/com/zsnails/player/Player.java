@@ -11,6 +11,12 @@ import com.zsnails.game.iRegistro;
 public class Player implements iJugador {
 
     private String nombre;
+    private String contrasena;
+
+    public Player(String nombre, String contrasena) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+    }
 
     private Map<String, Integer> puntajes = new HashMap<>();
 

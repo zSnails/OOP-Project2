@@ -4,18 +4,21 @@ import javax.swing.JFrame;
 
 import com.zsnails.hiddenNumber.HiddenNumberGame;
 
-// import com.zsnails.tictactoe.TicTacToeGame;
+import com.zsnails.player.Player;
+import com.zsnails.hiddenNumber.HiddenNumberGameUI;
 
 public class App {
     public static void main(String[] args) {
         JFrame wHandle = new JFrame("Nigger dog");
         wHandle.setSize(500, 500);
 
-        HiddenNumberGame hng = new HiddenNumberGame();
+        Player e = new Player("Samuel", "");
 
-        hng.iniciarPartida(null);
-        wHandle.add(hng);
 
-        wHandle.setVisible(true);
+        HiddenNumberGameUI i = new HiddenNumberGameUI();
+        i.iniciarPartida(e);
+
+
+        // wHandle.setVisible(true);
     }
 }

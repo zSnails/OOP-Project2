@@ -8,12 +8,16 @@ import com.zsnails.game.iJugador;
 import com.zsnails.game.iJugador;
 import java.time.LocalDate;
 import java.util.Random;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author omega
  */
 public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego{
     private Random rand = new Random();
+    private int attempts = 0;
+    private int puntos = 0;
     private int numeroOculto = 0;
     private LocalDate startDate;
     public final int MAX_NUM = 100;
@@ -25,11 +29,14 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego{
     public HiddenNumberGameUI() {
         
         initComponents();
-        //LabelName.setText(jugador.getNombre());
         LabelAttempts.setText("0");
         LabelPoints.setText("0");
         
         
+    }
+
+    private void nuevaPartida() {
+        this.numeroOculto = nuevoNumero();
     }
 
     /**
@@ -140,43 +147,25 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerifyActionPerformed
+        int adivinado = Integer.valueOf(txtNum.getText());
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HiddenNumberGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HiddenNumberGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HiddenNumberGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HiddenNumberGameUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        this.attempts++;
+        LabelAttempts.setText(String.valueOf(attempts));
+        if (this.numeroOculto == adivinado) {
+
+            // TODO: incrementar los puntos de la partida y al final de todo registrarlos
+            // en el perfil del usuario
+
+            this.puntos++;
+            LabelPoints.setText(String.valueOf(this.puntos));
+
+            nuevaPartida();
+            showMessageDialog(this, "Yessir 💀 Puntaco");
+        } else {
+            showMessageDialog(this, "Não não amigão (^///^) No puntaco\nPista: " + ((adivinado > this.numeroOculto) ? "es menor" : "es mayor"));
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HiddenNumberGameUI().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_btnVerifyActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAttempts;
@@ -199,14 +188,13 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego{
         this.jugador = jugador;
         this.numeroOculto = nuevoNumero();
         this.startDate = LocalDate.now();
-        
-        
-        
+        LabelName.setText(jugador.getNombre());
+        this.setVisible(true);
     }
 
     @Override
     public void terminarPartida() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.jugador.registrarPuntaje(this.puntos, this);
     }
 
     @Override
