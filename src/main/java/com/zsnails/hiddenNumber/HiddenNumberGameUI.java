@@ -4,11 +4,13 @@
  */
 package com.zsnails.hiddenNumber;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
+import java.time.LocalDateTime;
+import java.util.Random;
+
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
-import java.time.LocalDate;
-import java.util.Random;
-import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -19,7 +21,7 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego {
     private int attempts = 0;
     private int puntos = 0;
     private int numeroOculto = 0;
-    private LocalDate startDate;
+    private LocalDateTime startDate;
     public final int MAX_NUM = 100;
 
     private iJugador jugador = null;
@@ -219,7 +221,8 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego {
     public void iniciarPartida(iJugador jugador) {
         this.jugador = jugador;
         this.numeroOculto = nuevoNumero();
-        this.startDate = LocalDate.now();
+        this.startDate = LocalDateTime.now();
+
         LabelName.setText(jugador.getNombre());
         this.setVisible(true);
 
