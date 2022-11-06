@@ -11,11 +11,6 @@ public class App {
         JFrame wHandle = new JFrame("Nigger dog");
         wHandle.setSize(500, 500);
 
-        // PTicTacToe p = new PTicTacToe();
-        // p.setVisible(true);
-
-        // wHandle.add(p);
-        // p.iniciarPartida(null);
         HiddenNumberGame hng = new HiddenNumberGame();
 
         hng.iniciarPartida(null);
