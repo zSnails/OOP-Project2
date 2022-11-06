@@ -26,22 +26,21 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
-    private iJuego[] juegos = new iJuego[3];
-    private iJugador jugador = null;
-
-    private JButton btnExit;
-    private JButton btnGame1;
-    private JButton btnGame2;
-    private JButton btnGame3;
-    private JButton[] btns;
-    private JLabel jLabel1;
-    private JPanel jPanel1;
-    private List<iRegistro> registros = new ArrayList<>();
-
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnGame1;
+    private javax.swing.JButton btnGame2;
+    private javax.swing.JButton btnGame3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     /**
      * Creates new form GameCenter
      */
+    private iJuego[] juegos = new iJuego[3];
+    private iJugador jugador = null;
+    private JButton[] btns;
+    private List<iRegistro> registros = new ArrayList<>();
+
     public GameCenter(iJugador jugador, iJuego... juegos) {
         initComponents();
         this.jugador = jugador;
@@ -79,6 +78,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -95,6 +95,11 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         jLabel1.setText("CENTRO DE JUEGOS");
 
         btnExit.setText("Salir");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -110,8 +115,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnGame2, javax.swing.GroupLayout.PREFERRED_SIZE, 121,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26,
-                                        Short.MAX_VALUE)
+                                .addGap(26, 26, 26)
                                 .addComponent(btnGame3, javax.swing.GroupLayout.PREFERRED_SIZE, 121,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))
@@ -124,7 +128,8 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1)
-                                .addGap(44, 44, 44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44,
+                                        Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout
                                                 .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -137,7 +142,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
                                 .addGap(44, 44, 44)
                                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 57,
                                         javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(98, Short.MAX_VALUE)));
+                                .addGap(98, 98, 98)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,4 +169,9 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         // TODO Auto-generated method stub
         return null;
     }
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }// GEN-LAST:event_btnExitActionPerformed
 }
