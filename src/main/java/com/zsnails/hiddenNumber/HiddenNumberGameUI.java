@@ -11,6 +11,7 @@ import java.util.Random;
 
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
+import com.zsnails.game.iRegistro;
 
 /**
  *
@@ -242,4 +243,5 @@ public class HiddenNumberGameUI extends javax.swing.JFrame implements iJuego {
     public String getDescripcion() {
         return "algo breve";
     }
+   
 }
