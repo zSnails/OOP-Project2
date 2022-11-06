@@ -23,7 +23,7 @@ public class HiddenNumberGame extends JPanel implements iJuego {
     }
 
     private void initUI() {
-        guess.setWidth(100);
+        guess.setSize(500, 20);
         this.setVisible(true);
         this.add(guess);
     }
