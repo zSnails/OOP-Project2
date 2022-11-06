@@ -4,22 +4,28 @@
  */
 package com.zsnails.GameCenter;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+import com.zsnails.game.iCentroJuego;
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
+import com.zsnails.game.iRegistro;
 
 /**
  *
  * @author omega
  */
-public class GameCenter extends javax.swing.JFrame {
+public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private iJuego[] juegos = new iJuego[3];
     private iJugador jugador = null;
 
@@ -30,6 +36,7 @@ public class GameCenter extends javax.swing.JFrame {
     private JButton[] btns;
     private JLabel jLabel1;
     private JPanel jPanel1;
+    private List<iRegistro> registros = new ArrayList<>();
 
     // End of variables declaration//GEN-END:variables
     /**
@@ -145,4 +152,16 @@ public class GameCenter extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public ArrayList<iRegistro> getRegistros(iJuego tipoJuego) {
+        return new ArrayList<iRegistro>(
+                this.registros.stream().filter((r) -> r.getClass() == tipoJuego.getClass()).toList());
+    }
+
+    @Override
+    public ArrayList<iJuego> getJuegosDisponibles() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
