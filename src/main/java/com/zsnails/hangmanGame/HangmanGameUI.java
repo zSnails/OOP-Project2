@@ -5,8 +5,6 @@
  */
 package com.zsnails.hangmanGame;
 import java.awt.Image;
-import javax.swing.JOptionPane;
-import java.util.Random;
 import javax.swing.ImageIcon;
 import com.zsnails.hangmanGame.windowwin;
 import com.zsnails.game.iJuego;
@@ -15,6 +13,7 @@ import com.zsnails.game.iJugador;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -22,7 +21,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author omega
  */
 public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
-    Random random = new Random();
+    
     protected ArrayList<String>words_list = new ArrayList<String>();
     char [] array_underscores;
     private iJugador jugador = null;
@@ -75,15 +74,19 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         btnZ = new javax.swing.JButton();
         btnY = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtprintname = new javax.swing.JLabel();
-        txtprintdifficulty = new javax.swing.JLabel();
         txtprintrecord = new javax.swing.JLabel();
         txtword = new javax.swing.JLabel();
         imgscrag = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -362,10 +365,6 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Jugador:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Dificultad:");
-
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Puntos:");
@@ -373,17 +372,6 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         txtprintname.setBackground(new java.awt.Color(0, 153, 153));
         txtprintname.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtprintname.setForeground(new java.awt.Color(255, 255, 255));
-        txtprintname.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtprintnameInputMethodTextChanged(evt);
-            }
-        });
-
-        txtprintdifficulty.setBackground(new java.awt.Color(0, 153, 153));
-        txtprintdifficulty.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        txtprintdifficulty.setForeground(new java.awt.Color(255, 255, 255));
 
         txtprintrecord.setBackground(new java.awt.Color(0, 153, 153));
         txtprintrecord.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -394,6 +382,16 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
 
         imgscrag.setText("jLabel5");
 
+        btnExit.setBackground(new java.awt.Color(51, 204, 255));
+        btnExit.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnExit.setText("Terminar");
+        btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -403,23 +401,25 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imgscrag, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtprintname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(imgscrag, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtprintname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtprintrecord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 78, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtprintdifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtprintrecord, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE))
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
                         .addComponent(txtword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -466,33 +466,20 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                                 .addGap(18, 18, 18)
                                 .addComponent(btnT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnY, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnY, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(51, 51, 51))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(69, 69, 69))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtprintname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtprintdifficulty, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtprintrecord, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(58, 58, 58))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnA, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,9 +490,7 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                             .addComponent(btnD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnE, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnH, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,23 +515,34 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                             .addComponent(btnR, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnS, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(imgscrag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtprintname, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtprintrecord, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(64, 64, 64)
+                        .addComponent(imgscrag, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
+                        .addComponent(txtword, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnU, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnY, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnZ, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnX, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(txtword, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnV, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnU, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -574,10 +570,6 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         guessWord(array_underscores,letter);
        btnA.setEnabled(false);
     }//GEN-LAST:event_btnAActionPerformed
-
-    private void txtprintnameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtprintnameInputMethodTextChanged
-         
-    }//GEN-LAST:event_txtprintnameInputMethodTextChanged
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         char letter = 'C';
@@ -728,6 +720,15 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         guessWord(array_underscores,letter);
         btnZ.setEnabled(false);
     }//GEN-LAST:event_btnZActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        terminarPartida();
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        terminarPartida();
+    }//GEN-LAST:event_formWindowClosed
     protected void showvalues(){
         //charge the values from the player in the interface
        
@@ -758,7 +759,10 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
    
     protected static char[] gen_underscores(){
         //place the underscores of the size from the word
-        int nLetters = (int) (Math.random() * 14) + 3;
+        Random ran = new Random();
+        
+        int nLetters = 3 + ran.nextInt((13 - 3) + 1);
+        System.out.println(nLetters);
         char [] underscores = new char[nLetters];
         for (int i =0;i < underscores.length;i++){
             underscores[i] = '_';
@@ -783,8 +787,8 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         int max_val = words_list.size();
         String hiddenWord = "";
         
-        int randomnum = min_val + (int) (Math.random() * max_val) + 1;
-        
+        int randomnum =(int) (Math.random() * ( max_val - min_val ));
+        System.out.println(randomnum);
         hiddenWord = words_list.get(randomnum);
         System.out.println(hiddenWord);
         return hiddenWord;
@@ -815,7 +819,11 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
             
             if (rightWord == true){
                 if (underscoresON(underscores) == false){
+                    
+                   
                     windowwin win = new windowwin(new javax.swing.JDialog(),true);
+                    points = (points*100)-attempts;
+                    win.setpoints(points);
                     dispose();
                     terminarPartida();
                     win.setVisible(true);
@@ -826,8 +834,9 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                 
               
             }else{
-                changeImage();
                 attempts++;
+                changeImage();
+                
             }
         
         
@@ -912,13 +921,14 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnA;
     private javax.swing.JButton btnB;
     private javax.swing.JButton btnC;
     private javax.swing.JButton btnD;
     private javax.swing.JButton btnE;
+    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnF;
     private javax.swing.JButton btnG;
     private javax.swing.JButton btnH;
@@ -943,15 +953,44 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
     private javax.swing.JButton btnZ;
     private javax.swing.JLabel imgscrag;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel txtprintdifficulty;
     private javax.swing.JLabel txtprintname;
     private javax.swing.JLabel txtprintrecord;
     private javax.swing.JLabel txtword;
     // End of variables declaration//GEN-END:variables
-
+    /*javax.swing.JButton [] listButtons = {btnA,btnB,btnC,btnD,btnE,btnF,btnG,
+        btnH,btnI,btnJ,btnK,btnL,btnM,btnN,btnN2,btnO,btnP,btnQ,btnR,btnS,btnT,
+        btnU,btnV,btnW,btnX,btnY,btnZ};*/
+    private void enableButtons(){
+        btnA.setEnabled(true);
+        btnB.setEnabled(true);
+        btnC.setEnabled(true);
+        btnD.setEnabled(true);
+        btnE.setEnabled(true);
+        btnF.setEnabled(true);
+        btnG.setEnabled(true);
+        btnH.setEnabled(true);
+        btnI.setEnabled(true);
+        btnJ.setEnabled(true);
+        btnK.setEnabled(true);
+        btnL.setEnabled(true);
+        btnM.setEnabled(true);
+        btnN.setEnabled(true);
+        btnN2.setEnabled(true);
+        btnO.setEnabled(true);
+        btnP.setEnabled(true);
+        btnQ.setEnabled(true);
+        btnR.setEnabled(true);
+        btnS.setEnabled(true);
+        btnT.setEnabled(true);
+        btnU.setEnabled(true);
+        btnV.setEnabled(true);
+        btnW.setEnabled(true);
+        btnX.setEnabled(true);
+        btnY.setEnabled(true);
+        btnZ.setEnabled(true);
+    }
     @Override
     public void iniciarPartida(iJugador jugador) {
         this.jugador = jugador;
@@ -976,8 +1015,8 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
         this.jugador.registrarPuntaje(this.points, this);
         this.points = 0;
         this.attempts = 0;
-        array_underscores = gen_underscores();
         words_list = new ArrayList<String>();
+        enableButtons();
     }
 
     @Override

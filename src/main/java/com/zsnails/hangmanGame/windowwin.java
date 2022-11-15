@@ -144,8 +144,8 @@ public class windowwin extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-     protected void setpoints(){
-     
+     protected void setpoints(int points){
+         txtpoints.setText(String.valueOf(points));
      }
         
     public static void main(String args[]) {
