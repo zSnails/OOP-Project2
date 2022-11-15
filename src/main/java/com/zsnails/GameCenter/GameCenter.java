@@ -6,13 +6,17 @@ package com.zsnails.GameCenter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOError;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import com.zsnails.Registro.Registro;
 import com.zsnails.game.iCentroJuego;
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
@@ -36,7 +40,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     /**
      * Creates new form GameCenter
      */
-    private iJuego[] juegos = new iJuego[3];
+    private ArrayList<iJuego> juegos = new ArrayList<>();
     private iJugador jugador = null;
     private JButton[] btns;
     private List<iRegistro> registros = new ArrayList<>();
@@ -45,16 +49,31 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         initComponents();
         this.jugador = jugador;
         this.btns = new JButton[] { btnGame1, btnGame2, btnGame3 };
-        this.juegos = juegos;
+        for (iJuego j : juegos)
+            this.juegos.add(j);
+
         this.loadGames();
     }
 
+    @Override
+    public ArrayList<iRegistro> getRegistros(iJuego tipoJuego) {
+        return new ArrayList<iRegistro>(
+                this.registros.stream().filter((r) -> ((Registro) (r)).getJuego().getClass() == tipoJuego.getClass())
+                        .toList());
+    }
+
+    @Override
+    public ArrayList<iJuego> getJuegosDisponibles() {
+        // TODO Auto-generated method stub
+        return this.juegos;
+    }
+
     private void loadGames() {
-        for (int i = 0; i < this.juegos.length; i++) {
-            iJuego juego = this.juegos[i];
+        for (int i = 0; i < this.juegos.size(); i++) {
+            iJuego juego = this.juegos.get(i);
             if (juego == null)
                 continue;
-            this.btns[i].setText(this.juegos[i].getNombre());
+            this.btns[i].setText(this.juegos.get(i).getNombre());
 
             this.btns[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -62,13 +81,6 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
                 }
             });
         }
-
-        // for (int i = 0; i < 3; i++) {
-        // if (this.btns[i] == null || this.juegos[i] == null)
-        // continue;
-        // this.btns[i].setText(this.juegos[i].getNombre());
-        // }
-
     }
 
     /**
@@ -158,20 +170,127 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public ArrayList<iRegistro> getRegistros(iJuego tipoJuego) {
-        return new ArrayList<iRegistro>(
-                this.registros.stream().filter((r) -> r.getClass() == tipoJuego.getClass()).toList());
-    }
-
-    @Override
-    public ArrayList<iJuego> getJuegosDisponibles() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }// GEN-LAST:event_btnExitActionPerformed
+
+    @Override
+    public void addRegistro(iRegistro registro) {
+        this.registros.add(registro);
+        try {
+            this.almacenarRegistros();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public javax.swing.JButton getBtnExit() {
+        return btnExit;
+    }
+
+    public void setBtnExit(javax.swing.JButton btnExit) {
+        this.btnExit = btnExit;
+    }
+
+    public javax.swing.JButton getBtnGame1() {
+        return btnGame1;
+    }
+
+    public void setBtnGame1(javax.swing.JButton btnGame1) {
+        this.btnGame1 = btnGame1;
+    }
+
+    public javax.swing.JButton getBtnGame2() {
+        return btnGame2;
+    }
+
+    public void setBtnGame2(javax.swing.JButton btnGame2) {
+        this.btnGame2 = btnGame2;
+    }
+
+    public javax.swing.JButton getBtnGame3() {
+        return btnGame3;
+    }
+
+    public void setBtnGame3(javax.swing.JButton btnGame3) {
+        this.btnGame3 = btnGame3;
+    }
+
+    public javax.swing.JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(javax.swing.JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public ArrayList<iJuego> getJuegos() {
+        return juegos;
+    }
+
+    public void setJuegos(ArrayList<iJuego> juegos) {
+        this.juegos = juegos;
+    }
+
+    public iJugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(iJugador jugador) {
+        this.jugador = jugador;
+    }
+
+    public JButton[] getBtns() {
+        return btns;
+    }
+
+    public void setBtns(JButton[] btns) {
+        this.btns = btns;
+    }
+
+    public List<iRegistro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<iRegistro> registros) {
+        this.registros = registros;
+    }
+
+    private void cargarRegistros() {
+        FileReader fr;
+        try {
+            fr = new FileReader("data.dat");
+
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+    }
+
+    private void almacenarRegistros() throws IOException {
+        PrintWriter pw = new PrintWriter(new FileWriter("data.dat"));
+        for (int i = 0; i < this.registros.size(); i++) {
+            // for (iRegistro _r : this.registros) {
+            Registro r = (Registro) this.registros.get(i);
+            pw.printf("%s,%s,%d,%b,%s,%s", r.getInicio(), r.getFinalizacion(), r.getPuntaje(), r.getEstadoFinalizado(),
+                    r.getJugador().getNombre(), r.getJuego().getNombre());
+
+            if (i != (this.registros.size() - 1)) {
+                pw.print("|");
+            }
+        }
+        pw.flush();
+        pw.close();
+    }
 }
