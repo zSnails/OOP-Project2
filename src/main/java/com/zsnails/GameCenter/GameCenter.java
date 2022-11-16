@@ -181,7 +181,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     }
 
     public iJugador findJugador(String nombre) {
-        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
+        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findAny().get();
     }
 
     public void setJugador(final iJugador jugador) {
