@@ -2,23 +2,18 @@ package com.zsnails.snake;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-// import java.nio.CharBuffer;
-// import java.util.ArrayList;
+import java.io.InvalidObjectException;
 
 import javax.swing.JFrame;
 
+import com.zsnails.GameCenter.GameCenter;
 import com.zsnails.Registro.Registro;
-import com.zsnails.game.iCentroJuego;
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
-// import com.zsnails.game.iRegistro;
-// import com.zsnails.storage.iDataGenerator;
 
 public class SnakeGame extends JFrame implements iJuego {
 
     private iJugador player = null;
-
-    private iCentroJuego gameCenter;
 
     private SnakePanel snakePanel = new SnakePanel();
 
@@ -49,14 +44,6 @@ public class SnakeGame extends JFrame implements iJuego {
         this.player = player;
     }
 
-    public iCentroJuego getGameCenter() {
-        return gameCenter;
-    }
-
-    public void setGameCenter(iCentroJuego gameCenter) {
-        this.gameCenter = gameCenter;
-    }
-
     public SnakePanel getSnakePanel() {
         return snakePanel;
     }
@@ -82,16 +69,23 @@ public class SnakeGame extends JFrame implements iJuego {
 
     @Override
     public void terminarPartida() {
+        this.snakePanel.stopGame();
         Registro score = this.snakePanel.getScore(this.hardReset);
 
         score.setJuego(this);
         score.setJugador(this.player);
 
         this.player.registrarPuntaje(score.getPuntaje(), this);
-        this.gameCenter.addRegistro(score);
+        try {
+            GameCenter.getInstance().addRegistro(score);
+        } catch (InvalidObjectException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // this.snakePanel.setVisible(false);
 
         this.dispose();
-        // TODO: dump game data
     }
 
     @Override
@@ -104,11 +98,4 @@ public class SnakeGame extends JFrame implements iJuego {
         return "Un juego sencillo de snake que me saqué de un video de un indio";
     }
 
-    // @Override
-    // public String userScore() {
-    // // 64KB for the buffer
-    // CharBuffer buf = CharBuffer.allocate(1024 * 64);
-
-    // return buf.toString();
-    // }
 }

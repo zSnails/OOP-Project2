@@ -202,6 +202,7 @@ public class SnakePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g) {
+        this.running = false;
         g.setColor(Color.RED);
         g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 75));
         FontMetrics met = this.getFontMetrics(g.getFont());
@@ -214,6 +215,10 @@ public class SnakePanel extends JPanel implements ActionListener {
         met = this.getFontMetrics(g.getFont());
 
         g.drawString(note, (SCREEN_WIDTH - met.stringWidth(note)) / 2, (SCREEN_HEIGHT / 2) + 75);
+    }
+
+    public void stopGame() {
+        this.running = false;
     }
 
     @Override
