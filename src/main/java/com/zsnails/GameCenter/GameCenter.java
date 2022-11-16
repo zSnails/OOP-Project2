@@ -400,4 +400,12 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         pw.flush();
         pw.close();
     }
+
+	public List<iJugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<iJugador> jugadores) {
+		this.jugadores = jugadores;
+	}
 }

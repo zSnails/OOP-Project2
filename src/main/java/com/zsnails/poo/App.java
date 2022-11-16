@@ -27,6 +27,9 @@ public class App {
         GameCenter.makeInstance(zeta, t, s, h);
 
         GameCenter center = GameCenter.getInstance();
+        System.out.println(center.getJugadores());
+
+        System.out.println(center.findJugador("dog"));
 
         center.setVisible(true);
     }

@@ -15,15 +15,17 @@ public class Player implements iJugador {
     private String contrasena;
     private List<iRegistro> stats = new ArrayList<>();
 
+    private Map<String, Integer> puntajes = new HashMap<>();
+
     public Player() {
     }
 
-    public Player(String nombre, String contrasena) {
+    public Player(final String nombre, final String contrasena) {
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(final String nombre) {
         this.nombre = nombre;
     }
 
@@ -31,22 +33,20 @@ public class Player implements iJugador {
         return contrasena;
     }
 
-    public void setContrasena(String contrasena) {
+    public void setContrasena(final String contrasena) {
         this.contrasena = contrasena;
     }
-
-    private Map<String, Integer> puntajes = new HashMap<>();
 
     public String getNombre() {
         return this.nombre;
     }
 
-    public void registrarPuntaje(int puntuacion, iJuego juego) {
+    public void registrarPuntaje(final int puntuacion, final iJuego juego) {
         this.puntajes.computeIfAbsent(juego.getNombre(), (key) -> puntuacion);
         this.puntajes.computeIfPresent(juego.getNombre(), (k, v) -> v += puntuacion);
     }
 
-    public ArrayList<iRegistro> estadisticas(iJuego tipoJuego) {
+    public ArrayList<iRegistro> estadisticas(final iJuego tipoJuego) {
         return new ArrayList<iRegistro>(
                 // WARNING: broken code
 
@@ -57,5 +57,26 @@ public class Player implements iJugador {
                 // the
                 // stats list
                 this.stats.stream().filter((e) -> e.getClass() == tipoJuego.getClass()).toList());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Player(%s)", this.nombre);
+    }
+
+    public List<iRegistro> getStats() {
+        return stats;
+    }
+
+    public void setStats(final List<iRegistro> stats) {
+        this.stats = stats;
+    }
+
+    public Map<String, Integer> getPuntajes() {
+        return puntajes;
+    }
+
+    public void setPuntajes(final Map<String, Integer> puntajes) {
+        this.puntajes = puntajes;
     }
 }
