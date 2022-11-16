@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 public class Auth {
     private static Map<String, String> data = new HashMap<>();
@@ -46,6 +47,9 @@ public class Auth {
     public static void registerUser(String name, String password) {
         try {
             PrintWriter pw = new PrintWriter(new File("players.dat"));
+            for (Entry<String, String> val : data.entrySet()) {
+                pw.printf("%s,%s\n", val.getValue(), val.getKey());
+            }
             pw.printf("%s,%s\n", name, password);
             pw.close();
         } catch (FileNotFoundException e) {
