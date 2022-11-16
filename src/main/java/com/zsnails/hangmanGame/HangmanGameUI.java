@@ -857,7 +857,7 @@ public class HangmanGameUI extends JFrame implements iJuego {
         // read the file with the words
         try {
             BufferedReader bf = new BufferedReader(
-                    new FileReader("src\\main\\java\\com\\zsnails\\hangmanGame\\palabras.txt"));
+                    new FileReader("src/main/java/com/zsnails/hangmanGame/palabras.txt"));
 
             String bfRead;
             int i = 0;
@@ -966,7 +966,7 @@ public class HangmanGameUI extends JFrame implements iJuego {
     }
 
     protected void showImage() {
-        ImageIcon scrag = new ImageIcon("src\\main\\java\\com\\zsnails\\hangmanGame\\images\\ahorcado1.jpg");
+        ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado1.jpg");
 
         ImageIcon icon = new ImageIcon(
                 scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
@@ -976,14 +976,14 @@ public class HangmanGameUI extends JFrame implements iJuego {
     protected void changeImage() {
 
         if (attempts >= 1) {
-            ImageIcon scrag = new ImageIcon("src\\main\\java\\com\\zsnails\\hangmanGame\\images\\ahorcado2.jpg");
+            ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado2.jpg");
 
             ImageIcon icon = new ImageIcon(
                     scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
             imgscrag.setIcon(icon);
         }
         if (attempts >= 2) {
-            ImageIcon scrag = new ImageIcon("src\\main\\java\\com\\zsnails\\hangmanGame\\images\\ahorcado3.jpg");
+            ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado3.jpg");
 
             ImageIcon icon = new ImageIcon(
                     scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
@@ -991,13 +991,13 @@ public class HangmanGameUI extends JFrame implements iJuego {
         }
 
         if (attempts >= 4) {
-            ImageIcon scrag = new ImageIcon("src\\main\\java\\com\\zsnails\\hangmanGame\\images\\ahorcado4.jpg");
+            ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado4.jpg");
             ImageIcon icon = new ImageIcon(
                     scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
             imgscrag.setIcon(icon);
         }
         if (attempts >= 5) {
-            ImageIcon scrag = new ImageIcon("src\\main\\java\\com\\zsnails\\hangmanGame\\images\\ahorcado5.jpg");
+            ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado5.jpg");
             ImageIcon icon = new ImageIcon(
                     scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
             imgscrag.setIcon(icon);
