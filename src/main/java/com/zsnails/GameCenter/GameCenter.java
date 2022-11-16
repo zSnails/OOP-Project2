@@ -8,11 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 
@@ -46,6 +47,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     private List<iRegistro> registros = new ArrayList<>();
 
     public GameCenter(iJugador jugador, iJuego... juegos) {
+        this.cargarRegistros();
         initComponents();
         this.jugador = jugador;
         this.btns = new JButton[] { btnGame1, btnGame2, btnGame3 };
@@ -269,12 +271,15 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         FileReader fr;
         try {
             fr = new FileReader("data.dat");
-
             fr.close();
         } catch (IOException e) {
             e.printStackTrace();
             return;
         }
+        Scanner ss = new Scanner(fr);
+        // TODO: finish this lmao
+
+        System.out.println("Le buf: " + buf.toString());
 
     }
 
