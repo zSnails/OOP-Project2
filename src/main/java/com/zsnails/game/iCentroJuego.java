@@ -18,4 +18,6 @@ public interface iCentroJuego {
      * @return listado de juegos
      */
     public ArrayList<iJuego> getJuegosDisponibles();
+
+    public void addRegistro(iRegistro registro);
 }
