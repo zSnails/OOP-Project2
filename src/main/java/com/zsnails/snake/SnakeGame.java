@@ -19,6 +19,8 @@ public class SnakeGame extends JFrame implements iJuego {
 
     private boolean hardReset = false;
 
+    private GameCenter gameCenter = null;
+
     public SnakeGame() {
         this.add(snakePanel);
         this.setTitle("Snake");
@@ -65,6 +67,12 @@ public class SnakeGame extends JFrame implements iJuego {
         this.player = jugador;
         this.setVisible(true);
         this.snakePanel.startGame();
+
+        try {
+            this.gameCenter = GameCenter.getInstance();
+        } catch (InvalidObjectException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -76,14 +84,11 @@ public class SnakeGame extends JFrame implements iJuego {
         score.setJugador(this.player);
 
         this.player.registrarPuntaje(score.getPuntaje(), this);
-        try {
-            GameCenter.getInstance().addRegistro(score);
-        } catch (InvalidObjectException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // this.snakePanel.setVisible(false);
+        // try {
+        this.gameCenter.addRegistro(score);
+        // } catch (InvalidObjectException e) {
+        // e.printStackTrace();
+        // }
 
         this.dispose();
     }

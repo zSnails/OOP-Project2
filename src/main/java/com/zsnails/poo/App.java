@@ -20,9 +20,7 @@ public class App {
         SnakeGame s = new SnakeGame();
         GameCenter.makeInstance(zeta, e, s, h);
 
-
         GameCenter center = GameCenter.getInstance();
-        // s.setGameCenter(center);
 
         center.setVisible(true);
     }

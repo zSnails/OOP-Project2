@@ -45,12 +45,11 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     private JButton[] btns;
     private List<iRegistro> registros = new ArrayList<>();
 
-    public static GameCenter instance = null;
+    private static GameCenter instance = null;
 
     public static void makeInstance(iJugador jugador, iJuego... juegos) {
         if (instance == null)
             instance = new GameCenter(jugador, juegos);
-
     }
 
     public static GameCenter getInstance() throws InvalidObjectException {
@@ -59,14 +58,9 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         return instance;
     }
 
-    // public GameCenter(iJugador jugador, iJuego... juegos) {
-    // if (GameCenter.instance == null)
-    // GameCenter.instance = new GameCenter(true, jugador, juegos);
-    // }
-
     private GameCenter(iJugador jugador, iJuego... juegos) {
         this.cargarRegistros();
-        initComponents();
+        this.initComponents();
         this.jugador = jugador;
         this.btns = new JButton[] { btnGame1, btnGame2, btnGame3 };
         for (iJuego j : juegos)

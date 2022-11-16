@@ -9,15 +9,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.InvalidObjectException;
 import java.time.LocalDateTime;
 import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.zsnails.GameCenter.GameCenter;
 import com.zsnails.Registro.Registro;
 
 public class SnakePanel extends JPanel implements ActionListener {
+
+    private static Font monospacedFont = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
     public class SKeyAdapter extends KeyAdapter {
         @Override
@@ -66,13 +70,15 @@ public class SnakePanel extends JPanel implements ActionListener {
     private int bodyParts = 6;
     private int applesEaten = 0;
 
-    private Apple apple;
+    private Apple apple = new Apple(0, 0);
 
     private char direction = 'R';
 
     private boolean running = false;
 
     private Timer timer;
+
+    private GameCenter gameCenter = null;
 
     private LocalDateTime startDate;
 
@@ -82,7 +88,6 @@ public class SnakePanel extends JPanel implements ActionListener {
     private int y[] = new int[GAME_UNITS];
 
     public SnakePanel() {
-        this.random = new Random();
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(Color.black);
         this.setFocusable(true);
@@ -90,6 +95,14 @@ public class SnakePanel extends JPanel implements ActionListener {
     }
 
     public void startGame() {
+        try {
+            this.gameCenter = GameCenter.getInstance();
+        } catch (InvalidObjectException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        this.random = new Random();
         this.newApple();
         this.running = true;
         this.timer = new Timer(DELAY, this);
@@ -98,8 +111,8 @@ public class SnakePanel extends JPanel implements ActionListener {
         this.x = new int[GAME_UNITS];
         this.y = new int[GAME_UNITS];
         this.applesEaten = 0;
-        this.bodyParts = 6;
-        this.direction = 'R';
+        this.bodyParts = 3;
+        this.direction = 'D';
 
         this.startDate = LocalDateTime.now();
 
@@ -139,7 +152,7 @@ public class SnakePanel extends JPanel implements ActionListener {
 
             // NOTE: draw the current score on screen
             g.setColor(Color.WHITE);
-            g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
+            g.setFont(monospacedFont);
             FontMetrics met = this.getFontMetrics(g.getFont());
             String text = String.format("Puntos: %d", this.applesEaten);
             g.drawString(text, (SCREEN_WIDTH - met.stringWidth(text)) - 30, g.getFont().getSize());
@@ -150,8 +163,8 @@ public class SnakePanel extends JPanel implements ActionListener {
     }
 
     public void newApple() {
-        this.apple = new Apple(this.random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE,
-                this.random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE);
+        this.apple.x = this.random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
+        this.apple.y = this.random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
     }
 
     public void move() {
