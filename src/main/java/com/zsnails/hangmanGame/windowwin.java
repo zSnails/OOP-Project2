@@ -35,7 +35,6 @@ public class windowwin extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnplayagain = new javax.swing.JButton();
         btnmenu = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtpoints = new javax.swing.JLabel();
@@ -48,17 +47,6 @@ public class windowwin extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Freestyle Script", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("HAS GANADO");
-
-        btnplayagain.setBackground(new java.awt.Color(0, 204, 204));
-        btnplayagain.setFont(new java.awt.Font("Garamond", 1, 18)); // NOI18N
-        btnplayagain.setForeground(new java.awt.Color(255, 255, 255));
-        btnplayagain.setText("Volver a jugar");
-        btnplayagain.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btnplayagain.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnplayagainActionPerformed(evt);
-            }
-        });
 
         btnmenu.setBackground(new java.awt.Color(0, 204, 204));
         btnmenu.setFont(new java.awt.Font("Garamond", 1, 18)); // NOI18N
@@ -94,11 +82,8 @@ public class windowwin extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnmenu)
-                            .addComponent(btnplayagain, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(txtpoints, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtpoints, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnmenu))))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,11 +95,9 @@ public class windowwin extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtpoints, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnplayagain, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(btnmenu, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,12 +113,6 @@ public class windowwin extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnplayagainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnplayagainActionPerformed
-        
-      
-        
-    }//GEN-LAST:event_btnplayagainActionPerformed
 
     private void btnmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuActionPerformed
         dispose();
@@ -189,7 +166,6 @@ public class windowwin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnmenu;
-    private javax.swing.JButton btnplayagain;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

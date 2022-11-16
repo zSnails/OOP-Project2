@@ -5,6 +5,8 @@
  */
 package com.zsnails.hangmanGame;
 
+import com.zsnails.Registro.Registro;
+import com.zsnails.game.iCentroJuego;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,6 +18,7 @@ import javax.swing.JFrame;
 
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
+import java.time.LocalDateTime;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
@@ -27,12 +30,20 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
     protected ArrayList<String> words_list = new ArrayList<String>();
     char[] array_underscores;
-    private iJugador jugador = null;
+    private iJugador player = null;
     private int points = 0;
     private int attempts = 0;
+    protected LocalDateTime startDate;
+    protected String hiddenWord;
+    private boolean hardReset = false;
+    private iCentroJuego gameCenter;
+    public boolean isHardReset() {
+        return hardReset;
+    }
 
-    String hiddenWord;
-
+    public void setHardReset(boolean hardReset) {
+        this.hardReset = hardReset;
+    }
     public HangmanGameUI() {
         // super(parent, modal);
         initComponents();
@@ -837,18 +848,20 @@ public class HangmanGameUI extends JFrame implements iJuego {
     }// GEN-LAST:event_btnZActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
+        hardReset = true;
         terminarPartida();
         dispose();
     }// GEN-LAST:event_btnExitActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosed
         terminarPartida();
+        hardReset = true;
     }// GEN-LAST:event_formWindowClosed
 
     protected void showvalues() {
         // charge the values from the player in the interface
 
-        txtprintname.setText(jugador.getNombre());
+        txtprintname.setText(player.getNombre());
         txtprintrecord.setText(String.valueOf(points));
 
     }
@@ -1131,10 +1144,12 @@ public class HangmanGameUI extends JFrame implements iJuego {
         btnY.setEnabled(true);
         btnZ.setEnabled(true);
     }
-
+    public Registro getScore(boolean hardReset) {
+        return new Registro(this.startDate, LocalDateTime.now(), this.points, hardReset, player, this);
+    }
     @Override
     public void iniciarPartida(iJugador jugador) {
-        this.jugador = jugador;
+        this.player = jugador;
 
         // NOTE: removed this due to startDate never being read
 
@@ -1142,8 +1157,10 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
         showMessageDialog(this, "Bienvenid@ " + jugador.getNombre());
         array_underscores = gen_underscores();
+        startDate = LocalDateTime.now();
         showvalues();
         showImage();
+        hardReset = false;
         hiddenWord = gen_word();
         printUnderscores(array_underscores);
         this.setVisible(true);
@@ -1152,10 +1169,13 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
     @Override
     public void terminarPartida() {
-        this.jugador.registrarPuntaje(this.points, this);
+        Registro score = this.getScore(this.hardReset);
+        this.player.registrarPuntaje(this.points, this);
         this.points = 0;
         this.attempts = 0;
         words_list = new ArrayList<String>();
+        this.player.registrarPuntaje(score.getPuntaje(), this);
+        this.gameCenter.addRegistro(score);
         enableButtons();
     }
 
