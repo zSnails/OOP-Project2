@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
- *
+ *Class Graphical interface for the Hangman game
  * @author omega
  */
 public class HangmanGameUI extends JFrame implements iJuego {
@@ -40,14 +40,21 @@ public class HangmanGameUI extends JFrame implements iJuego {
     public boolean isHardReset() {
         return hardReset;
     }
-
+    /**
+     * Set HardReset status
+     * @param hardReset 
+     */
     public void setHardReset(boolean hardReset) {
         this.hardReset = hardReset;
     }
+    /**
+     * constructor
+     */
     public HangmanGameUI() {
         // super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -684,190 +691,286 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnBActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBActionPerformed
         char letter = 'B';
         guessWord(array_underscores, letter);
         btnB.setEnabled(false);
     }// GEN-LAST:event_btnBActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnAActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAActionPerformed
         char letter = 'A';
         guessWord(array_underscores, letter);
         btnA.setEnabled(false);
     }// GEN-LAST:event_btnAActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCActionPerformed
         char letter = 'C';
         guessWord(array_underscores, letter);
         btnC.setEnabled(false);
     }// GEN-LAST:event_btnCActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDActionPerformed
         char letter = 'D';
         guessWord(array_underscores, letter);
         btnD.setEnabled(false);
     }// GEN-LAST:event_btnDActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnEActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEActionPerformed
         char letter = 'E';
         guessWord(array_underscores, letter);
         btnE.setEnabled(false);
     }// GEN-LAST:event_btnEActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnFActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnFActionPerformed
         char letter = 'F';
         guessWord(array_underscores, letter);
         btnF.setEnabled(false);
     }// GEN-LAST:event_btnFActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnGActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGActionPerformed
         char letter = 'G';
         guessWord(array_underscores, letter);
         btnG.setEnabled(false);
     }// GEN-LAST:event_btnGActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnHActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHActionPerformed
         char letter = 'H';
         guessWord(array_underscores, letter);
         btnH.setEnabled(false);
     }// GEN-LAST:event_btnHActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnIActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnIActionPerformed
         char letter = 'I';
         guessWord(array_underscores, letter);
         btnI.setEnabled(false);
     }// GEN-LAST:event_btnIActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnJActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnJActionPerformed
         char letter = 'J';
         guessWord(array_underscores, letter);
         btnJ.setEnabled(false);
     }// GEN-LAST:event_btnJActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnKActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnKActionPerformed
         char letter = 'K';
         guessWord(array_underscores, letter);
         btnK.setEnabled(false);
     }// GEN-LAST:event_btnKActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLActionPerformed
         char letter = 'L';
         guessWord(array_underscores, letter);
         btnL.setEnabled(false);
     }// GEN-LAST:event_btnLActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnMActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMActionPerformed
         char letter = 'M';
         guessWord(array_underscores, letter);
         btnM.setEnabled(false);
     }// GEN-LAST:event_btnMActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnNActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNActionPerformed
         char letter = 'N';
         guessWord(array_underscores, letter);
         btnN.setEnabled(false);
     }// GEN-LAST:event_btnNActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnN2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnN2ActionPerformed
         char letter = 'Ñ';
         guessWord(array_underscores, letter);
         btnN2.setEnabled(false);
     }// GEN-LAST:event_btnN2ActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnOActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnOActionPerformed
         char letter = 'O';
         guessWord(array_underscores, letter);
         btnO.setEnabled(false);
     }// GEN-LAST:event_btnOActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnPActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPActionPerformed
         char letter = 'P';
         guessWord(array_underscores, letter);
         btnP.setEnabled(false);
     }// GEN-LAST:event_btnPActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnQActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnQActionPerformed
         char letter = 'Q';
         guessWord(array_underscores, letter);
         btnQ.setEnabled(false);
     }// GEN-LAST:event_btnQActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnRActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRActionPerformed
         char letter = 'R';
         guessWord(array_underscores, letter);
         btnR.setEnabled(false);
     }// GEN-LAST:event_btnRActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnSActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSActionPerformed
         char letter = 'S';
         guessWord(array_underscores, letter);
         btnS.setEnabled(false);
     }// GEN-LAST:event_btnSActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnTActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTActionPerformed
         char letter = 'T';
         guessWord(array_underscores, letter);
         btnT.setEnabled(false);
     }// GEN-LAST:event_btnTActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnUActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUActionPerformed
         char letter = 'U';
         guessWord(array_underscores, letter);
         btnU.setEnabled(false);
     }// GEN-LAST:event_btnUActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnVActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnVActionPerformed
         char letter = 'V';
         guessWord(array_underscores, letter);
         btnV.setEnabled(false);
     }// GEN-LAST:event_btnVActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnWActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnWActionPerformed
         char letter = 'W';
         guessWord(array_underscores, letter);
         btnW.setEnabled(false);
     }// GEN-LAST:event_btnWActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnXActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnXActionPerformed
         char letter = 'X';
         guessWord(array_underscores, letter);
         btnX.setEnabled(false);
     }// GEN-LAST:event_btnXActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnYActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnYActionPerformed
         char letter = 'Y';
         guessWord(array_underscores, letter);
         btnY.setEnabled(false);
     }// GEN-LAST:event_btnYActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnZActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnZActionPerformed
         char letter = 'Z';
         guessWord(array_underscores, letter);
         btnZ.setEnabled(false);
     }// GEN-LAST:event_btnZActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
         hardReset = true;
         terminarPartida();
         dispose();
     }// GEN-LAST:event_btnExitActionPerformed
-
+    /**
+     * 
+     * @param evt 
+     */
     private void formWindowClosed(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosed
         terminarPartida();
         hardReset = true;
     }// GEN-LAST:event_formWindowClosed
 
-    protected void showvalues() {
-        // charge the values from the player in the interface
+    
 
+ /**
+  * It sets the text of the textview txtprintname to the value of the player's name and the text of the
+  * textview txtprintrecord to the value of the points.
+  * 
+  */
+    protected void showvalues() {
         txtprintname.setText(player.getNombre());
         txtprintrecord.setText(String.valueOf(points));
 
     }
 
+    /**
+     * It reads a file with words and adds them to an array if they have the same length as the word to
+     * be guessed
+     */
     private void read_lettersfile() {
-        // read the file with the words
+        
         try {
             BufferedReader bf = new BufferedReader(
                     new FileReader("src/main/java/com/zsnails/hangmanGame/palabras.txt"));
@@ -888,8 +991,14 @@ public class HangmanGameUI extends JFrame implements iJuego {
         }
     }
 
+   /**
+    * It generates a random number between 3 and 13, and then creates an array of underscores of that
+    * size
+    * 
+    * @return The underscores are being returned.
+    */
     protected static char[] gen_underscores() {
-        // place the underscores of the size from the word
+        
         Random ran = new Random();
 
         int nLetters = 3 + ran.nextInt((13 - 3) + 1);
@@ -901,9 +1010,12 @@ public class HangmanGameUI extends JFrame implements iJuego {
         return underscores;
 
     }
-
+/**
+ * It takes a char array and prints it to a text field
+ * 
+ * @param underscores the underscores that are printed in the interface
+ */
     protected void printUnderscores(char[] underscores) {
-        // print the underscores in the interface
         String wordUnderscores = "";
         for (int i = 0; i < underscores.length; i++) {
             wordUnderscores = wordUnderscores + " " + underscores[i];
@@ -912,6 +1024,11 @@ public class HangmanGameUI extends JFrame implements iJuego {
         txtword.setText(wordUnderscores);
     }
 
+ /**
+  * It reads a file, generates a random number, and returns a word from the file
+  * 
+  * @return The hidden word is being returned.
+  */
     protected String gen_word() {
         // generate the random number and select the hidden word
 
@@ -928,15 +1045,15 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
     }
 
+    /**
+     * It checks if the letter guessed is in the word, if it is, it replaces the underscore with the
+     * letter, if not, it changes the image
+     * 
+     * @param underscores the array of underscores that are shown in the game.
+     * @param letter the letter that the user has guessed
+     */
     protected void guessWord(char[] underscores, char letter) {
 
-        boolean gameover = false;
-        boolean gamewin = false;
-
-        /**
-         * all the letters of the selected words are compared to see
-         * if any are equal to the selected letter
-         */
         boolean rightWord = false;
         for (int i = 0; i < this.hiddenWord.length(); i++) {
             if (hiddenWord.charAt(i) == letter) {
@@ -969,6 +1086,12 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
     }
 
+   /**
+    * It checks if there are underscores in the array
+    * 
+    * @param underscores the array of characters that the user has guessed so far
+    * @return The method is returning a boolean value.
+    */
     protected boolean underscoresON(char[] underscores) {
         // check for underscores
         for (char l : underscores) {
@@ -978,6 +1101,10 @@ public class HangmanGameUI extends JFrame implements iJuego {
         return false;
     }
 
+    /**
+     * Prints the base image on the UI
+     * 
+     */
     protected void showImage() {
         ImageIcon scrag = new ImageIcon("src/main/java/com/zsnails/hangmanGame/images/ahorcado1.jpg");
 
@@ -985,7 +1112,9 @@ public class HangmanGameUI extends JFrame implements iJuego {
                 scrag.getImage().getScaledInstance(imgscrag.getWidth(), imgscrag.getHeight(), Image.SCALE_DEFAULT));
         imgscrag.setIcon(icon);
     }
-
+    /**
+     * changes the image depending on the number of attempts 
+     */
     protected void changeImage() {
 
         if (attempts >= 1) {
@@ -1110,10 +1239,8 @@ public class HangmanGameUI extends JFrame implements iJuego {
     private javax.swing.JLabel txtword;
 
     // End of variables declaration//GEN-END:variables
-    /*
-     * javax.swing.JButton [] listButtons = {btnA,btnB,btnC,btnD,btnE,btnF,btnG,
-     * btnH,btnI,btnJ,btnK,btnL,btnM,btnN,btnN2,btnO,btnP,btnQ,btnR,btnS,btnT,
-     * btnU,btnV,btnW,btnX,btnY,btnZ};
+    /**
+     * enable all buttons after playing
      */
     private void enableButtons() {
         btnA.setEnabled(true);
@@ -1144,18 +1271,25 @@ public class HangmanGameUI extends JFrame implements iJuego {
         btnY.setEnabled(true);
         btnZ.setEnabled(true);
     }
+
+    /**
+     * It returns a new object of type Registro, which is a class that stores the start date, end date,
+     * points, hardReset, player, and the current instance of the class
+     * 
+     * @param hardReset boolean
+     * @return A new instance of the class Registro.
+     */
     public Registro getScore(boolean hardReset) {
         return new Registro(this.startDate, LocalDateTime.now(), this.points, hardReset, player, this);
     }
     @Override
+    // Initializing the game.
+    /**
+     * 
+     */
     public void iniciarPartida(iJugador jugador) {
         this.player = jugador;
 
-        // NOTE: removed this due to startDate never being read
-
-        // this.startDate = LocalDateTime.now();
-
-        showMessageDialog(this, "Bienvenid@ " + jugador.getNombre());
         array_underscores = gen_underscores();
         startDate = LocalDateTime.now();
         showvalues();
@@ -1164,10 +1298,14 @@ public class HangmanGameUI extends JFrame implements iJuego {
         hiddenWord = gen_word();
         printUnderscores(array_underscores);
         this.setVisible(true);
+        showMessageDialog(this, "Bienvenid@ " + jugador.getNombre());
 
     }
 
     @Override
+    /**
+     * 
+     */
     public void terminarPartida() {
         Registro score = this.getScore(this.hardReset);
         this.player.registrarPuntaje(this.points, this);
@@ -1178,12 +1316,18 @@ public class HangmanGameUI extends JFrame implements iJuego {
         this.gameCenter.addRegistro(score);
         enableButtons();
     }
-
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String getNombre() {
         return "HangMan Game";
     }
-
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String getDescripcion() {
         return "Juego de adivinar la palabra oculta";
