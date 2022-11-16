@@ -20,6 +20,9 @@ public class Registro implements iRegistro {
     private iJugador jugador;
     private iJuego juego;
 
+    public Registro() {
+    }
+
     public Registro(LocalDateTime inicio, LocalDateTime finalizacion, int puntaje, boolean estadoFinalizado,
             iJugador jugador, iJuego juego) {
         this.inicio = inicio;
@@ -31,22 +34,22 @@ public class Registro implements iRegistro {
     }
 
     public void setPuntaje(int puntaje) {
-		this.puntaje = puntaje;
-	}
+        this.puntaje = puntaje;
+    }
 
-	public void setEstadoFinalizado(boolean estadoFinalizado) {
-		this.estadoFinalizado = estadoFinalizado;
-	}
+    public void setEstadoFinalizado(boolean estadoFinalizado) {
+        this.estadoFinalizado = estadoFinalizado;
+    }
 
-	public void setJugador(iJugador jugador) {
-		this.jugador = jugador;
-	}
+    public void setJugador(iJugador jugador) {
+        this.jugador = jugador;
+    }
 
-	public void setJuego(iJuego juego) {
-		this.juego = juego;
-	}
+    public void setJuego(iJuego juego) {
+        this.juego = juego;
+    }
 
-	public iJuego getJuego() {
+    public iJuego getJuego() {
         return this.juego;
     }
 

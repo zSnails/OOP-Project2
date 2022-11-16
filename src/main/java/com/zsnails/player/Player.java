@@ -15,6 +15,9 @@ public class Player implements iJugador {
     private String contrasena;
     private List<iRegistro> stats = new ArrayList<>();
 
+    public Player() {
+    }
+
     public Player(String nombre, String contrasena) {
         this.nombre = nombre;
         this.contrasena = contrasena;
