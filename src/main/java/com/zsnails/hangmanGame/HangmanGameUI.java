@@ -822,7 +822,7 @@ public class HangmanGameUI extends javax.swing.JDialog implements iJuego{
                     
                    
                     windowwin win = new windowwin(new javax.swing.JDialog(),true);
-                    points = (points*100)-attempts;
+                    points = (points*100)-(attempts);
                     win.setpoints(points);
                     dispose();
                     terminarPartida();
