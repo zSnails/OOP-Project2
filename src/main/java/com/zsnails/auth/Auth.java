@@ -50,7 +50,7 @@ public class Auth {
      * @param password The user's password
      */
     public static void registerUser(String name, String password) throws RegistrationException {
-        if (data.get(password) == null)
+        if (data.containsKey(password))
             throw new RegistrationException("ese usuario ya existe");
         data.put(password, name);
 
