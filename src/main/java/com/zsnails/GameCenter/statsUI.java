@@ -142,7 +142,7 @@ public class statsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGameActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_formWindowClosed
     public void setJugador(iJugador jugador){
         this.jugador = jugador;

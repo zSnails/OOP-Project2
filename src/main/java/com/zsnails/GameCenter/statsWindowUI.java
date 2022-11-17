@@ -51,6 +51,11 @@ public class statsWindowUI extends javax.swing.JFrame {
         txtStats = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         txtStats.setColumns(20);
         txtStats.setRows(5);
@@ -84,6 +89,10 @@ public class statsWindowUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowClosed
+        this.setVisible(false);
+    }// GEN-LAST:event_formWindowClosed
 
     public void statsPersonal() throws InvalidObjectException {
         this.jugador = GameCenter.getInstance().getJugador(); // TODO: remove this crap
