@@ -6,6 +6,9 @@ package com.zsnails.GameCenter;
 
 import com.zsnails.game.iJuego;
 import com.zsnails.game.iJugador;
+import java.io.InvalidObjectException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -113,20 +116,28 @@ public class statsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStatsGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsGActionPerformed
-       statsPersonalUI p = new statsPersonalUI();
-       p.setState(1);
+       statsWindowUI p = new statsWindowUI();
+       
+        try {
+            p.statsGeneral();
+        } catch (InvalidObjectException ex) {
+            Logger.getLogger(statsUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
        p.setVisible(true);
     }//GEN-LAST:event_btnStatsGActionPerformed
 
     private void btnStatsPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsPActionPerformed
-        statsPersonalUI p = new statsPersonalUI();
-        p.setState(0);
+        statsWindowUI p = new statsWindowUI();
+        try {
+            p.statsPersonal();
+        } catch (InvalidObjectException ex) {
+            Logger.getLogger(statsUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         p.setVisible(true);
     }//GEN-LAST:event_btnStatsPActionPerformed
 
     private void btnGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameActionPerformed
         statsGameUI p = new statsGameUI();
-        p.setState(2);
         p.setVisible(true);
     }//GEN-LAST:event_btnGameActionPerformed
 

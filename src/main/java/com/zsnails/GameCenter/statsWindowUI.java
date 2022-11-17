@@ -14,19 +14,15 @@ import java.util.logging.Logger;
  *
  * @author omega
  */
-public class statsPersonalUI extends javax.swing.JFrame {
+public class statsWindowUI extends javax.swing.JFrame {
     private int stats;
     protected iJugador jugador;
     /**
      * Creates new form statsPersonalUI
      */
-    public statsPersonalUI() {
+    public statsWindowUI() {
         initComponents();
-        try {
-            printStats();
-        } catch (InvalidObjectException ex) {
-            Logger.getLogger(statsPersonalUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }
 
     public int getStats() {
@@ -87,20 +83,8 @@ public class statsPersonalUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void printStats() throws InvalidObjectException{
-        if (getStats() == 0){
-            statsPersonal();
-            
-        }
-        else if (getStats() == 1){
-            statsGeneral();
-        }
-        else if (getStats() == 2){
-            statsGameUI gameUI = new statsGameUI();
-            gameUI.setVisible(true);
-        }
-    }
-    private void statsPersonal() throws InvalidObjectException{
+
+    public void statsPersonal() throws InvalidObjectException{
         String txt = "";
         List<iRegistro> top = GameCenter.getInstance().getTop10(jugador);
         for(iRegistro r : top){
@@ -113,7 +97,7 @@ public class statsPersonalUI extends javax.swing.JFrame {
         }
        txtStats.setText(txt);
     }
-    private void statsGeneral() throws InvalidObjectException{
+    public void statsGeneral() throws InvalidObjectException{
         String txt = "";
         List<iRegistro> top = GameCenter.getInstance().getTop10();
         for(iRegistro r : top){
@@ -148,20 +132,21 @@ public class statsPersonalUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(statsPersonalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(statsWindowUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(statsPersonalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(statsWindowUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(statsPersonalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(statsWindowUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(statsPersonalUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(statsWindowUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new statsPersonalUI().setVisible(true);
+                new statsWindowUI().setVisible(true);
             }
         });
     }
