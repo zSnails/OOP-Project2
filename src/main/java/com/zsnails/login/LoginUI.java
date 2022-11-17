@@ -127,26 +127,21 @@ public class LoginUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(89, 89, 89)
-                                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap())
+                                                .addGroup(jPanel1Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(btnRegister,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout
                                                 .createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                                         javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                jPanel1Layout.createSequentialGroup()
-                                                                        .addComponent(btnLogin,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                36,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(75, 75, 75))
-                                                        .addComponent(btnRegister,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 35,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))));
+                                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(75, 75, 75)))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
