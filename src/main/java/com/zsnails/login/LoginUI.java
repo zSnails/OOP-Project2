@@ -177,9 +177,13 @@ public class LoginUI extends javax.swing.JFrame {
 
             GameCenter center = null;
             try {
-                center = GameCenter.getInstance();
-                center.cargarJugadores();
-                center.cargarRegistros();
+                if (center == null) {
+                    center = GameCenter.getInstance();
+                    center.cargarJugadores();
+                    center.cargarRegistros();
+                }
+
+                center.setJugador(zeta);
 
             } catch (InvalidObjectException ex) {
                 Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);

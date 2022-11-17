@@ -82,6 +82,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         setLocationRelativeTo(null);
         this.setResizable(false);
         this.loadGames();
+
         // this.cargarJugadores();
         // this.cargarRegistros();
 
