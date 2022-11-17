@@ -123,6 +123,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Gets the top 10 scores of all games
+     * 
      * @return
      */
     public List<iRegistro> getTop10() {
@@ -132,16 +133,23 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Gets the top 10 scores of a given user
+     * 
      * @param user
      * @return
      */
     public List<iRegistro> getTop10(iJugador user) {
-        Stream<iRegistro> porUsuario = this.registros.stream().filter((r) -> r.getJugador() == user);
-        return porUsuario.sorted((a, b) -> compare(a, b)).limit(10).toList();
+        if (user == null)
+            return null;
+        return this.registros.stream().filter((r) -> {
+            if (r.getJugador() == null)
+                return false;
+            return user.getNombre().compareTo(r.getJugador().getNombre()) == 0;
+        }).sorted((a, b) -> compare(a, b)).limit(10).toList();
     }
 
     /**
      * Gets the top 10 of a given game
+     * 
      * @param game
      * @return
      */
@@ -152,6 +160,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Gets juegos
+     * 
      * @return
      */
     public ArrayList<iJuego> getJuegos() {
@@ -160,6 +169,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Sets juegos
+     * 
      * @param juegos
      */
     public void setJuegos(final ArrayList<iJuego> juegos) {
@@ -168,6 +178,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Gets jugador
+     * 
      * @return
      */
     public iJugador getJugador() {
@@ -176,26 +187,27 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Tries to find a player within the players list
+     * 
      * @param nombre The player's name
      * @return
      */
     public iJugador findJugador(String nombre) {
-        System.out.printf("Trying to find player: %s\n", nombre);
+        // System.out.printf("Trying to find player: %s\n", nombre);
         return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
     }
 
     /**
      * Sets jugador
+     * 
      * @param jugador
      */
     public void setJugador(final iJugador jugador) {
         this.jugador = jugador;
     }
 
-
-
     /**
      * Gets registros
+     * 
      * @return
      */
     public List<iRegistro> getRegistros() {
@@ -204,6 +216,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Sets registros
+     * 
      * @param registros
      */
     public void setRegistros(final List<iRegistro> registros) {
@@ -212,6 +225,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Searches for a game within the games list
+     * 
      * @param nombre The name of the game
      * @return The game it found
      */
@@ -265,7 +279,6 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
             while (pFile.hasNextLine()) {
                 Scanner line = new Scanner(pFile.nextLine());
-                System.out.printf("Nigger dog: %s\n", line.toString());
                 Player p = new Player();
 
                 line.useDelimiter(",");
@@ -302,6 +315,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Sets the players list
+     * 
      * @param jugadores
      */
     public void setJugadores(List<iJugador> jugadores) {
@@ -310,6 +324,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Compares 2 records to determine which has more points
+     * 
      * @param ra The first record
      * @param rb The second record
      * @return int value
@@ -473,6 +488,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     /**
      * Stores all records into the records file
+     * 
      * @throws IOException
      */
     private void almacenarRegistros() throws IOException {

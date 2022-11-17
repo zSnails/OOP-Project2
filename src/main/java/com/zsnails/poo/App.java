@@ -5,7 +5,6 @@ import java.io.InvalidObjectException;
 import com.zsnails.GameCenter.GameCenter;
 import com.zsnails.auth.Auth;
 import com.zsnails.login.LoginUI;
-
 public class App {
 
     /**
