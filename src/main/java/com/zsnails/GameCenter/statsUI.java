@@ -32,9 +32,14 @@ public class statsUI extends javax.swing.JFrame {
         btnStatsP = new javax.swing.JButton();
         btnStatsG = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         btnStatsP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnStatsP.setText("Stats Personales");
@@ -55,8 +60,13 @@ public class statsUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("Estadisticas");
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Stats por juego");
+        btnGame.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnGame.setText("Stats por juego");
+        btnGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,7 +80,7 @@ public class statsUI extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(btnStatsP)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnStatsG)
                 .addGap(34, 34, 34))
@@ -84,7 +94,7 @@ public class statsUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnStatsP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnStatsG, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGame, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
@@ -104,11 +114,25 @@ public class statsUI extends javax.swing.JFrame {
 
     private void btnStatsGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsGActionPerformed
        statsPersonalUI p = new statsPersonalUI();
+       p.setState(1);
+       p.setVisible(true);
     }//GEN-LAST:event_btnStatsGActionPerformed
 
     private void btnStatsPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsPActionPerformed
         statsPersonalUI p = new statsPersonalUI();
+        p.setState(0);
+        p.setVisible(true);
     }//GEN-LAST:event_btnStatsPActionPerformed
+
+    private void btnGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameActionPerformed
+        statsPersonalUI p = new statsPersonalUI();
+        p.setState(2);
+        p.setVisible(true);
+    }//GEN-LAST:event_btnGameActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        dispose();
+    }//GEN-LAST:event_formWindowClosed
     public void setJugador(iJugador jugador){
         this.jugador = jugador;
     }
@@ -151,9 +175,9 @@ public class statsUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGame;
     private javax.swing.JButton btnStatsG;
     private javax.swing.JButton btnStatsP;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
