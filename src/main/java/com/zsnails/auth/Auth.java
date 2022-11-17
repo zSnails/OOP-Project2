@@ -54,11 +54,9 @@ public class Auth {
             PrintWriter pw = new PrintWriter(new File("players.dat"));
 
             for (Entry<String, String> val : data.entrySet()) {
-                System.out.printf("Storing: %s,%s", val.getValue(), val.getKey());
                 pw.printf("%s,%s\n", val.getValue(), val.getKey());
             }
 
-            // pw.printf("%s,%s\n", name, password);
             pw.flush();
             pw.close();
         } catch (FileNotFoundException e) {
