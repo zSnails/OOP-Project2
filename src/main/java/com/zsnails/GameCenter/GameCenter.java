@@ -125,14 +125,19 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         return btnGame1;
     }
 
-    public List<iRegistro> getTop10AllGames() {
+    public List<iRegistro> getTop10() {
         return this.registros.stream().sorted((r1, r2) -> r1.getPuntaje() > r2.getPuntaje() ? 1 : -1).limit(10)
                 .toList();
     }
 
-    public List<iRegistro> getTop10User(iJugador user) {
+    public List<iRegistro> getTop10(iJugador user) {
         Stream<iRegistro> porUsuario = this.registros.stream().filter((r) -> r.getJugador() == user);
         return porUsuario.sorted((r1, r2) -> r1.getPuntaje() > r2.getPuntaje() ? 1 : -1).limit(10).toList();
+    }
+
+    public List<iRegistro> getTop10(iJuego game) {
+        Stream<iRegistro> porJuego = this.registros.stream().filter((r) -> ((Registro) (r)).getJuego() == game);
+        return porJuego.sorted((r1, r2) -> r1.getPuntaje() > r2.getPuntaje() ? 1 : -1).limit(10).toList();
     }
 
     public void setBtnGame1(final javax.swing.JButton btnGame1) {
