@@ -4,16 +4,18 @@
  */
 package com.zsnails.GameCenter;
 
+import com.zsnails.game.iJuego;
+import com.zsnails.game.iJugador;
+
 /**
  *
  * @author omega
  */
 public class statsUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form statsUI
-     */
+    iJugador jugador;
+    iJuego game;
     public statsUI() {
+        txtNameGame.setText(game.getNombre());
         initComponents();
     }
 
@@ -27,31 +29,36 @@ public class statsUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtNameGame = new javax.swing.JLabel();
+        btnGame = new javax.swing.JButton();
+        btnStatsP = new javax.swing.JButton();
+        btnStatsG = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtNameGame.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Jugar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGame.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnGame.setText("Jugar");
+        btnGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGameActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton2.setText("Stats Personales");
-
-        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton3.setText("Stats Generales");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnStatsP.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnStatsP.setText("Stats Personales");
+        btnStatsP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnStatsPActionPerformed(evt);
+            }
+        });
+
+        btnStatsG.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnStatsG.setText("Stats Generales");
+        btnStatsG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatsGActionPerformed(evt);
             }
         });
 
@@ -63,26 +70,26 @@ public class statsUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGame, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnStatsP)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(btnStatsG))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNameGame, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNameGame, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGame, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStatsP, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStatsG, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
@@ -100,14 +107,24 @@ public class statsUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnStatsGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsGActionPerformed
+       statsPersonalUI p = new statsPersonalUI();
+    }//GEN-LAST:event_btnStatsGActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameActionPerformed
 
+        game.iniciarPartida(jugador);
+    }//GEN-LAST:event_btnGameActionPerformed
+
+    private void btnStatsPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatsPActionPerformed
+        statsPersonalUI p = new statsPersonalUI();
+    }//GEN-LAST:event_btnStatsPActionPerformed
+    public void setJugador(iJugador jugador){
+        this.jugador = jugador;
+    }
+    public void setGame(iJuego game){
+        this.game = game;
+    }
     /**
      * @param args the command line arguments
      */
@@ -144,10 +161,11 @@ public class statsUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnGame;
+    private javax.swing.JButton btnStatsG;
+    private javax.swing.JButton btnStatsP;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel txtNameGame;
     // End of variables declaration//GEN-END:variables
 }
+

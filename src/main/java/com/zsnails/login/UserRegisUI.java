@@ -2,6 +2,8 @@
 package com.zsnails.login;
 
 import com.zsnails.auth.Auth;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -122,7 +124,11 @@ public class UserRegisUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        Auth.registerUser(txtUserName.getText(), txtPassword.getText());
+        try {
+            Auth.registerUser(txtUserName.getText(), txtPassword.getText());
+        } catch (Auth.RegistrationException ex) {
+            Logger.getLogger(UserRegisUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         txtUserName.setText("");
         txtPassword.setText("");
