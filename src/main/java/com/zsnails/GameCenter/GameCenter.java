@@ -181,7 +181,8 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     }
 
     public iJugador findJugador(String nombre) {
-        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findAny().get();
+        System.out.printf("Trying to find player: %s\n", nombre);
+        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
     }
 
     public void setJugador(final iJugador jugador) {
@@ -323,7 +324,7 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     private void btnExitActionPerformed(final java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        //System.exit(0);
+        // System.exit(0);
         dispose();
     }// GEN-LAST:event_btnExitActionPerformed
      //
