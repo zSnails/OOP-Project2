@@ -14,9 +14,7 @@ import java.io.InvalidObjectException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -377,22 +375,23 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         try {
             Scanner pFile = new Scanner(new File("players.dat"));
 
-            while (pFile.hasNextLine()) {
+            outer: while (pFile.hasNextLine()) {
                 Scanner line = new Scanner(pFile.nextLine());
                 System.out.printf("Nigger dog: %s\n", line.toString());
                 Player p = new Player();
 
                 line.useDelimiter(",");
+                while (line.hasNext()) {
+                    String nombre = line.next();
+                    String contrasena = line.next();
 
-                String nombre = line.next();
-                String contrasena = line.next();
+                    if (!cache.containsKey(nombre)) {
+                        continue outer;
+                    }
 
-                if (cache.containsKey(nombre)) {
-                    continue;
+                    p.setNombre(nombre);
+                    p.setContrasena(contrasena);
                 }
-
-                p.setNombre(nombre);
-                p.setContrasena(contrasena);
 
                 this.jugadores.add(p);
 

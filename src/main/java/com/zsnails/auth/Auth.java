@@ -5,14 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Map.Entry;
+import java.util.Scanner;
 
 public class Auth {
-    private static Map<String, String> data = new HashMap<>();
-
-    private Auth() {
+    public static class RegistrationException extends Exception {
+        public RegistrationException(String message) {
+            super(message);
+        }
     }
+
+    private static Map<String, String> data = new HashMap<>();
 
     public static void loadData() {
         try {
@@ -46,7 +49,9 @@ public class Auth {
      * @param name     The user's name
      * @param password The user's password
      */
-    public static void registerUser(String name, String password) {
+    public static void registerUser(String name, String password) throws RegistrationException {
+        if (data.get(password) == null)
+            throw new RegistrationException("ese usuario ya existe");
         data.put(password, name);
 
         try {
@@ -72,10 +77,9 @@ public class Auth {
      * @return Whether or not the user has been authenticated
      */
     public static boolean authenticate(String name, String password) {
-        // if (data.isEmpty()) {
-        //     loadData();
-        // }
-
         return data.get(password).compareTo(name) == 0;
+    }
+
+    private Auth() {
     }
 }

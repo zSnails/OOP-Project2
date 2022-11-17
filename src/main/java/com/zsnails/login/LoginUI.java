@@ -167,7 +167,6 @@ public class LoginUI extends javax.swing.JFrame {
     }// GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
-        Auth.loadData();
         if (Auth.authenticate(txtUserName.getText(), txtPassword.getText())) {
 
             Player zeta = new Player(txtUserName.getText(), txtPassword.getText());
@@ -195,7 +194,6 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegisterActionPerformed
         UserRegisUI regis = new UserRegisUI();
-        Auth.loadData(); // ensure the data is loaded
         regis.setVisible(true);
 
     }// GEN-LAST:event_btnRegisterActionPerformed
