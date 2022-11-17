@@ -10,25 +10,28 @@ import java.util.Scanner;
 
 public class Auth {
     public static class RegistrationException extends Exception {
-        public RegistrationException(String message) {
+        public RegistrationException(final String message) {
             super(message);
         }
     }
 
     private static Map<String, String> data = new HashMap<>();
 
+    /**
+     * Loads user data from the players file
+     */
     public static void loadData() {
         try {
-            Scanner pFile = new Scanner(new File("players.dat"));
+            final Scanner pFile = new Scanner(new File("players.dat"));
             System.out.println("Loading user data");
             while (pFile.hasNextLine()) {
                 System.out.println("Loading line");
-                Scanner line = new Scanner(pFile.nextLine());
+                final Scanner line = new Scanner(pFile.nextLine());
 
                 line.useDelimiter(",");
                 while (line.hasNext()) {
-                    String name = line.next();
-                    String password = line.next();
+                    final String name = line.next();
+                    final String password = line.next();
                     System.out.printf("Loading: %s,%s\n", name, password);
                     data.put(password, name);
                 }
@@ -38,7 +41,7 @@ public class Auth {
 
             pFile.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (final FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -49,22 +52,22 @@ public class Auth {
      * @param name     The user's name
      * @param password The user's password
      */
-    public static void registerUser(String name, String password) throws RegistrationException {
+    public static void registerUser(final String name, final String password) throws RegistrationException {
         if (data.containsValue(name))
             throw new RegistrationException("ese usuario ya existe");
         data.put(password, name);
 
         try {
 
-            PrintWriter pw = new PrintWriter(new File("players.dat"));
+            final PrintWriter pw = new PrintWriter(new File("players.dat"));
 
-            for (Entry<String, String> val : data.entrySet()) {
+            for (final Entry<String, String> val : data.entrySet()) {
                 pw.printf("%s,%s\n", val.getValue(), val.getKey());
             }
 
             pw.flush();
             pw.close();
-        } catch (FileNotFoundException e) {
+        } catch (final FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -76,10 +79,13 @@ public class Auth {
      * @param password The user's password
      * @return Whether or not the user has been authenticated
      */
-    public static boolean authenticate(String name, String password) {
+    public static boolean authenticate(final String name, final String password) {
         return data.get(password).compareTo(name) == 0;
     }
 
+    /**
+     * Auth class constructor
+     */
     private Auth() {
     }
 }

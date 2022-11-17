@@ -119,148 +119,6 @@ public class TicTacToe extends JFrame implements ActionListener, iJuego {
         blankSpace.setPreferredSize(new Dimension(450, 25));
         frame.add(blankSpace);
 
-        // Create a button to display personal stats
-        //final JButton statsButton = new JButton("Personal Stats");
-        //statsButton.addActionListener(new ActionListener() {
-            /*public void actionPerformed(ActionEvent e) {
-                // Create a new frame to show the stats
-                JFrame statsFrame = new JFrame("Personal Stats");
-                statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                statsFrame.setLayout(new FlowLayout());
-                statsFrame.setResizable(false);
-                statsFrame.setSize(500, 650);
-
-                // Add a text area to show the stats 
-                JTextArea stats = new JTextArea();
-                stats.setPreferredSize(new Dimension(450, 450));
-                stats.setEditable(false);
-
-                // Data variables
-                HashMap<LocalDate, Integer> playedDays = new HashMap<LocalDate, Integer>();
-                int totalGames = 0;
-                int totalHours = 0;
-
-                /*for (iRegistro register: centroJuegos.getRegistros(TicTacToe.this)) {
-                    if (register.getJugador().getNombre().equals(jugador.getNombre())) {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                        stats.append("Start time: " + register.getInicio().format(formatter) + "\n" +
-                                "End time: " + register.getFinalizacion().format(formatter) + "\n" +
-                                "Score: " + register.getPuntaje() + "\n" +
-                                "Total time: " + register.getSegundosTotalesPartida() + " seconds" + "\n" +
-                                "Finished: " + register.getEstadoFinalizado() + "\n\n");
-                        totalGames++;
-                        totalHours += register.getSegundosTotalesPartida();
-
-                        if (playedDays.containsKey(register.getInicio().toLocalDate())) {
-                            playedDays.put(register.getInicio().toLocalDate(), playedDays.get(register.getInicio().toLocalDate()) + 1);
-                        } else {
-                            playedDays.put(register.getInicio().toLocalDate(), 1);
-                        }
-                    }
-                }*/
-
-                // Show the average time played per day according to the total HashMap
-                /*int totalDays = 0;
-                for (LocalDate date: playedDays.keySet()) {
-                    totalDays++;
-                }
-                JLabel averageTime;
-                if (totalDays != 0) {
-                    averageTime = new JLabel("Average time played per day: " + totalHours / totalDays + " seconds");
-                } else {
-                    averageTime = new JLabel("Average time played per day: 0 seconds");
-                }
-                averageTime.setPreferredSize(new Dimension(450, 25));
-                statsFrame.add(averageTime);
-
-                JLabel totalGamesLabel = new JLabel("Total games: " + totalGames);
-                totalGamesLabel.setPreferredSize(new Dimension(450, 25));
-                statsFrame.add(totalGamesLabel);
-
-                // Show total hours using hh:mm:ss format 
-                int hours = totalHours / 3600;
-                int minutes = (totalHours % 3600) / 60;
-                int seconds = totalHours % 60;
-                JLabel totalHoursLabel = new JLabel("Total hours: " + String.format("%02d:%02d:%02d", hours, minutes, seconds));
-                totalHoursLabel.setPreferredSize(new Dimension(450, 25));
-                statsFrame.add(totalHoursLabel);
-
-                statsFrame.add(stats);
-
-                JButton exitButton = new JButton("Back");
-                exitButton.setPreferredSize(new Dimension(450, 50));
-                exitButton.setFont(new Font("Arial", Font.BOLD, 20));
-                exitButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        statsFrame.dispose();
-                    }
-                });
-                statsFrame.add(exitButton);
-
-                statsFrame.setVisible(true);
-            }
-        });*/
-        /*
-        statsButton.setPreferredSize(new Dimension(300, 50));
-        statsButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        frame.add(statsButton);
-        */
-        // Add blank space here 
-        /*final JLabel blankSpace2 = new JLabel(" ");
-        blankSpace2.setPreferredSize(new Dimension(450, 25));
-        frame.add(blankSpace2);
-        
-        // Create a button to display general stats
-        final JButton generalStatsButton = new JButton("General Stats");
-        generalStatsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame statsFrame = new JFrame("General Stats");
-                statsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                statsFrame.setLayout(new FlowLayout());
-                statsFrame.setResizable(false);
-                statsFrame.setSize(500, 550);
-
-                // Add a text area to show the stats 
-                JTextArea stats = new JTextArea();
-                stats.setPreferredSize(new Dimension(450, 450));
-                stats.setEditable(false);
-
-                // Show only the 10 best scores of centroJuegos.getRegistros(TicTacToe.this)
-                //List<iRegistro> registers = centroJuegos.getRegistros(TicTacToe.this);
-                /*registers.sort(new Comparator<iRegistro>() {
-                    public int compare(iRegistro r1, iRegistro r2) {
-                        return r2.getPuntaje() - r1.getPuntaje();
-                    }
-                });
-                for (int i = 0; i < 10; i++) {
-                    if (i < registers.size()) {
-                        iRegistro register = registers.get(i);
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                        stats.append("Username: " + register.getJugador().getNombre() + "\n" +
-                                "Score: " + register.getPuntaje() + "\n" +
-                                "Date: " + register.getInicio().format(formatter) + "\n\n");
-                    }
-                }*/
-
-                //statsFrame.add(stats);
-
-               /* JButton exitButton = new JButton("Back");
-                exitButton.setPreferredSize(new Dimension(450, 50));
-                exitButton.setFont(new Font("Arial", Font.BOLD, 20));
-                exitButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        statsFrame.dispose();
-                    }
-                });
-                statsFrame.add(exitButton);
-
-                statsFrame.setVisible(true);
-            }
-        });*/
-        /*generalStatsButton.setPreferredSize(new Dimension(300, 50));
-        generalStatsButton.setFont(new Font("Arial", Font.PLAIN, 20));
-        frame.add(generalStatsButton);*/
 
         // Add blank space here 
         final JLabel blankSpace3 = new JLabel(" ");
@@ -335,8 +193,6 @@ public class TicTacToe extends JFrame implements ActionListener, iJuego {
 
     /**
      * This method finishes the game and save the results
-     *
-     * @return {@link void}
      */
     public void terminarPartida() {
         //register.setFinalizacion(LocalDateTime.now());
@@ -352,23 +208,23 @@ public class TicTacToe extends JFrame implements ActionListener, iJuego {
     /**
      * This method returns the name of the game 
      *
-     * @return {@link String} The name of the game
+     * @return The name of the game
      */
     public String getNombre() {
         return gameTitle;
     }
 
-    /**
-     * This method returns the description of the game 
-     *
-     * @return {@link String} The description of the game
+
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iJuego#getDescripcion()
      */
     public String getDescripcion() {
         return gameDescription;
     }
 
     /**
-     * Check if the player won the game.
+     * Checks window
+     * @return int
      */
     public int checkWin() {
         // Check the rows

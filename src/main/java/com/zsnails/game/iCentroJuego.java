@@ -19,5 +19,10 @@ public interface iCentroJuego {
      */
     public ArrayList<iJuego> getJuegosDisponibles();
 
+    /**
+     * Agrega un nuevo registro a la lista de registros
+     * 
+     * @param registro
+     */
     public void addRegistro(iRegistro registro);
 }

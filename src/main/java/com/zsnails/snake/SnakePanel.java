@@ -21,9 +21,12 @@ import com.zsnails.Registro.Registro;
 
 public class SnakePanel extends JPanel implements ActionListener {
 
-    private static Font monospacedFont = new Font(Font.MONOSPACED, Font.BOLD, 15);
-
     public class SKeyAdapter extends KeyAdapter {
+        /*
+         * (non-Javadoc)
+         * 
+         * @see java.awt.event.KeyAdapter#keyPressed(java.awt.event.KeyEvent)
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
@@ -61,6 +64,8 @@ public class SnakePanel extends JPanel implements ActionListener {
         }
     }
 
+    private static Font monospacedFont = new Font(Font.MONOSPACED, Font.BOLD, 15);
+
     static final int SCREEN_WIDTH = 600;
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
@@ -94,6 +99,9 @@ public class SnakePanel extends JPanel implements ActionListener {
         this.addKeyListener(new SKeyAdapter());
     }
 
+    /**
+     * Starts the game
+     */
     public void startGame() {
         try {
             this.gameCenter = GameCenter.getInstance();
@@ -118,22 +126,31 @@ public class SnakePanel extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Gets score
+     * 
+     * @param hardReset Whether or not the game didn't fully close
+     * @return
+     */
     public Registro getScore(boolean hardReset) {
         return new Registro(this.startDate, LocalDateTime.now(), this.applesEaten, hardReset, null, null);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         draw(g);
     }
 
-    private void drawGrid(Graphics g) {
-        for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
-            g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
-        }
-    }
-
+    /**
+     * Draws the main game's graphics
+     * 
+     * @param g
+     */
     public void draw(Graphics g) {
         if (this.running) {
             this.drawGrid(g); // NOTE: optional method call
@@ -162,11 +179,17 @@ public class SnakePanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Creates a new apple
+     */
     public void newApple() {
         this.apple.x = this.random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
         this.apple.y = this.random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
     }
 
+    /**
+     * Moves the snake on the screen
+     */
     public void move() {
         for (int i = bodyParts; i > 0; i--) {
             x[i] = x[i - 1];
@@ -190,7 +213,10 @@ public class SnakePanel extends JPanel implements ActionListener {
         }
     }
 
-    public void checkApple() {
+    /**
+     * Checks if the snake ate the apple
+     */
+    public void appleEaten() {
         if ((x[0] == this.apple.x) && (y[0] == this.apple.y)) {
             this.bodyParts++;
             applesEaten++;
@@ -198,6 +224,9 @@ public class SnakePanel extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Checks if the snake collided with the screen
+     */
     public void checkCollisions() {
         for (int i = bodyParts; i > 0; i--) {
             if ((x[0] == x[i]) && (y[0] == y[i])) {
@@ -214,6 +243,11 @@ public class SnakePanel extends JPanel implements ActionListener {
             this.timer.stop();
     }
 
+    /**
+     * Shows a game over screen
+     * 
+     * @param g
+     */
     public void gameOver(Graphics g) {
         this.running = false;
         g.setColor(Color.RED);
@@ -230,19 +264,40 @@ public class SnakePanel extends JPanel implements ActionListener {
         g.drawString(note, (SCREEN_WIDTH - met.stringWidth(note)) / 2, (SCREEN_HEIGHT / 2) + 75);
     }
 
+    /**
+     * Stops the game
+     */
     public void stopGame() {
         this.running = false;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
     @Override
     public void actionPerformed(ActionEvent arg0) {
         if (this.running) {
             move();
-            checkApple();
+            appleEaten();
             checkCollisions();
         }
 
         repaint();
+    }
+
+    /**
+     * Draws a grid on the screen
+     * 
+     * @param g
+     */
+    private void drawGrid(Graphics g) {
+        for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
+            g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+            g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
+        }
     }
 
 }

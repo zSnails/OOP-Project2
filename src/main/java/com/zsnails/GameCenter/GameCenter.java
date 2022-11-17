@@ -37,19 +37,27 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
 
     private static GameCenter instance = null;
 
+    /**
+     * Creates the initial GameCenter instance
+     * 
+     * @param jugador The player
+     * @param juegos  The games list
+     */
     public static void makeInstance(final iJugador jugador, final iJuego... juegos) {
         if (instance == null)
             instance = new GameCenter(jugador, juegos);
     }
 
+    /**
+     * Returns the GameCenter instance
+     * 
+     * @return The GameCenter instance
+     * @throws InvalidObjectException
+     */
     public static GameCenter getInstance() throws InvalidObjectException {
         if (instance == null)
             throw new InvalidObjectException("the singleton must first be created with 'makeInstance'");
         return instance;
-    }
-
-    public static void setInstance(final GameCenter instance) {
-        GameCenter.instance = instance;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -113,33 +121,199 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         }
     }
 
-    public javax.swing.JButton getBtnExit() {
-        return btnExit;
-    }
-
-    public void setBtnExit(final javax.swing.JButton btnExit) {
-        this.btnExit = btnExit;
-    }
-
-    public javax.swing.JButton getBtnGame1() {
-        return btnGame1;
-    }
-
+    /**
+     * Gets the top 10 scores of all games
+     * @return
+     */
     public List<iRegistro> getTop10() {
         return this.registros.stream().sorted((a, b) -> compare(a, b)).limit(10)
                 .toList();
     }
 
+    /**
+     * Gets the top 10 scores of a given user
+     * @param user
+     * @return
+     */
     public List<iRegistro> getTop10(iJugador user) {
         Stream<iRegistro> porUsuario = this.registros.stream().filter((r) -> r.getJugador() == user);
         return porUsuario.sorted((a, b) -> compare(a, b)).limit(10).toList();
     }
 
+    /**
+     * Gets the top 10 of a given game
+     * @param game
+     * @return
+     */
     public List<iRegistro> getTop10(iJuego game) {
         Stream<iRegistro> porJuego = this.registros.stream().filter((r) -> ((Registro) (r)).getJuego() == game);
         return porJuego.sorted((a, b) -> compare(a, b)).limit(10).toList();
     }
 
+    /**
+     * Gets juegos
+     * @return
+     */
+    public ArrayList<iJuego> getJuegos() {
+        return juegos;
+    }
+
+    /**
+     * Sets juegos
+     * @param juegos
+     */
+    public void setJuegos(final ArrayList<iJuego> juegos) {
+        this.juegos = juegos;
+    }
+
+    /**
+     * Gets jugador
+     * @return
+     */
+    public iJugador getJugador() {
+        return jugador;
+    }
+
+    /**
+     * Tries to find a player within the players list
+     * @param nombre The player's name
+     * @return
+     */
+    public iJugador findJugador(String nombre) {
+        System.out.printf("Trying to find player: %s\n", nombre);
+        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
+    }
+
+    /**
+     * Sets jugador
+     * @param jugador
+     */
+    public void setJugador(final iJugador jugador) {
+        this.jugador = jugador;
+    }
+
+
+
+    /**
+     * Gets registros
+     * @return
+     */
+    public List<iRegistro> getRegistros() {
+        return registros;
+    }
+
+    /**
+     * Sets registros
+     * @param registros
+     */
+    public void setRegistros(final List<iRegistro> registros) {
+        this.registros = registros;
+    }
+
+    /**
+     * Searches for a game within the games list
+     * @param nombre The name of the game
+     * @return The game it found
+     */
+    public iJuego findJuego(String nombre) {
+        return this.juegos.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
+    }
+
+    /**
+     * Loads all records from the records file
+     */
+    public void cargarRegistros() {
+        try {
+            final Scanner ss = new Scanner(new File("data.dat"));
+
+            while (ss.hasNextLine()) {
+                final Scanner value = new Scanner(ss.nextLine());
+                value.useDelimiter(",");
+
+                Registro rr = new Registro();
+                while (value.hasNext()) {
+                    rr.setInicio(LocalDateTime.parse(value.next()));
+                    rr.setFinalizacion(LocalDateTime.parse(value.next()));
+                    rr.setPuntaje(value.nextInt());
+                    rr.setEstadoFinalizado(value.nextBoolean());
+                    String nombreJugador = value.next();
+                    rr.setJugador(findJugador(nombreJugador));
+                    String nombreJuego = value.next();
+                    rr.setJuego(findJuego(nombreJuego));
+                }
+
+                this.registros.add(rr);
+
+                value.close();
+            }
+
+            ss.close();
+
+        } catch (final FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads all players from the players file
+     */
+    public void cargarJugadores() {
+        Map<String, String> cache = new HashMap<>();
+
+        try {
+            Scanner pFile = new Scanner(new File("players.dat"));
+
+            while (pFile.hasNextLine()) {
+                Scanner line = new Scanner(pFile.nextLine());
+                System.out.printf("Nigger dog: %s\n", line.toString());
+                Player p = new Player();
+
+                line.useDelimiter(",");
+
+                String nombre = line.next();
+                String contrasena = line.next();
+
+                if (cache.containsKey(nombre)) {
+                    continue;
+                }
+
+                p.setNombre(nombre);
+                p.setContrasena(contrasena);
+
+                this.jugadores.add(p);
+
+                line.close();
+            }
+            System.out.printf("Finished loading players: %s\n", this.jugadores);
+
+            pFile.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @return Players list
+     */
+    public List<iJugador> getJugadores() {
+        return jugadores;
+    }
+
+    /**
+     * Sets the players list
+     * @param jugadores
+     */
+    public void setJugadores(List<iJugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    /**
+     * Compares 2 records to determine which has more points
+     * @param ra The first record
+     * @param rb The second record
+     * @return int value
+     */
     private int compare(iRegistro ra, iRegistro rb) {
         int a = ra.getPuntaje();
         int b = rb.getPuntaje();
@@ -151,79 +325,9 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         return -1;
     }
 
-    public void setBtnGame1(final javax.swing.JButton btnGame1) {
-        this.btnGame1 = btnGame1;
-    }
-
-    public javax.swing.JButton getBtnGame2() {
-        return btnGame2;
-    }
-
-    public void setBtnGame2(final javax.swing.JButton btnGame2) {
-        this.btnGame2 = btnGame2;
-    }
-
-    public javax.swing.JButton getBtnGame3() {
-        return btnGame3;
-    }
-
-    public void setBtnGame3(final javax.swing.JButton btnGame3) {
-        this.btnGame3 = btnGame3;
-    }
-
-    public javax.swing.JLabel getjLabel1() {
-        return jLabel1;
-    }
-
-    public void setjLabel1(final javax.swing.JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
-    }
-
-    public javax.swing.JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    public void setjPanel1(final javax.swing.JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
-    }
-
-    public ArrayList<iJuego> getJuegos() {
-        return juegos;
-    }
-
-    public void setJuegos(final ArrayList<iJuego> juegos) {
-        this.juegos = juegos;
-    }
-
-    public iJugador getJugador() {
-        return jugador;
-    }
-
-    public iJugador findJugador(String nombre) {
-        System.out.printf("Trying to find player: %s\n", nombre);
-        return this.jugadores.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
-    }
-
-    public void setJugador(final iJugador jugador) {
-        this.jugador = jugador;
-    }
-
-    public JButton[] getBtns() {
-        return btns;
-    }
-
-    public void setBtns(final JButton[] btns) {
-        this.btns = btns;
-    }
-
-    public List<iRegistro> getRegistros() {
-        return registros;
-    }
-
-    public void setRegistros(final List<iRegistro> registros) {
-        this.registros = registros;
-    }
-
+    /**
+     * Loads all games from the games list
+     */
     private void loadGames() {
         System.out.println(this.btns);
         for (int i = 0; i < this.juegos.size(); i++) {
@@ -247,11 +351,6 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -372,82 +471,10 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
     }// GEN-LAST:event_btnExitActionPerformed
      //
 
-    public iJuego findJuego(String nombre) {
-        return this.juegos.stream().filter((j) -> j.getNombre().compareTo(nombre) == 0).findFirst().get();
-    }
-
-    public void cargarRegistros() {
-        try {
-            final Scanner ss = new Scanner(new File("data.dat"));
-
-            // ss.useDelimiter("|");
-
-            while (ss.hasNextLine()) {
-                final Scanner value = new Scanner(ss.nextLine());
-                value.useDelimiter(",");
-
-                Registro rr = new Registro();
-                // inicio, finalizacion, int puntaje, boolean estadoFinalizado,
-                // iJugador jugador, iJuego juego
-                while (value.hasNext()) {
-                    rr.setInicio(LocalDateTime.parse(value.next()));
-                    rr.setFinalizacion(LocalDateTime.parse(value.next()));
-                    rr.setPuntaje(value.nextInt());
-                    rr.setEstadoFinalizado(value.nextBoolean());
-                    String nombreJugador = value.next();
-                    rr.setJugador(findJugador(nombreJugador));
-                    String nombreJuego = value.next();
-                    rr.setJuego(findJuego(nombreJuego));
-                }
-
-                this.registros.add(rr);
-
-                value.close();
-            }
-
-            ss.close();
-
-        } catch (final FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void cargarJugadores() {
-        Map<String, String> cache = new HashMap<>();
-
-        try {
-            Scanner pFile = new Scanner(new File("players.dat"));
-
-            while (pFile.hasNextLine()) {
-                Scanner line = new Scanner(pFile.nextLine());
-                System.out.printf("Nigger dog: %s\n", line.toString());
-                Player p = new Player();
-
-                line.useDelimiter(",");
-
-                String nombre = line.next();
-                String contrasena = line.next();
-
-                if (cache.containsKey(nombre)) {
-                    continue;
-                }
-
-                p.setNombre(nombre);
-                p.setContrasena(contrasena);
-
-                this.jugadores.add(p);
-
-                line.close();
-            }
-            System.out.printf("Finished loading players: %s\n", this.jugadores);
-
-            pFile.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Stores all records into the records file
+     * @throws IOException
+     */
     private void almacenarRegistros() throws IOException {
         final PrintWriter pw = new PrintWriter(new FileWriter("data.dat"));
         for (int i = 0; i < this.registros.size(); i++) {
@@ -462,13 +489,5 @@ public class GameCenter extends javax.swing.JFrame implements iCentroJuego {
         }
         pw.flush();
         pw.close();
-    }
-
-    public List<iJugador> getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(List<iJugador> jugadores) {
-        this.jugadores = jugadores;
     }
 }

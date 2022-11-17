@@ -29,6 +29,11 @@ public class statsGameUI extends javax.swing.JFrame {
         cmbNames();
     }
 
+    /**
+     * Sets listGames
+     * 
+     * @param games
+     */
     public void setListGames(ArrayList<iJuego> games) {
         listGames = games;
     }

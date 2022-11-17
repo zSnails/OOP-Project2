@@ -33,62 +33,106 @@ public class Registro implements iRegistro {
         this.juego = juego;
     }
 
+    /**
+     * Sets puntaje
+     * @param puntaje
+     */
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
 
+    /**
+     * sets estadoFinalizado
+     * @param estadoFinalizado
+     */
     public void setEstadoFinalizado(boolean estadoFinalizado) {
         this.estadoFinalizado = estadoFinalizado;
     }
 
+    /**
+     * Sets jugador
+     * @param jugador
+     */
     public void setJugador(iJugador jugador) {
         this.jugador = jugador;
     }
 
+    /**
+     * Sets juego
+     * @param juego
+     */
     public void setJuego(iJuego juego) {
         this.juego = juego;
     }
 
+    /**
+     * Gets juego
+     * @return
+     */
     public iJuego getJuego() {
         return this.juego;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getInicio()
+     */
     @Override
     public LocalDateTime getInicio() {
         return this.inicio;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getFinalizacion()
+     */
     @Override
     public LocalDateTime getFinalizacion() {
         return this.finalizacion;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#setInicio(java.time.LocalDateTime)
+     */
     @Override
     public void setInicio(LocalDateTime fechaHora) {
         this.inicio = fechaHora;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#setFinalizacion(java.time.LocalDateTime)
+     */
     @Override
     public void setFinalizacion(LocalDateTime fechaHora) {
         this.finalizacion = fechaHora;
 
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getPuntaje()
+     */
     @Override
     public int getPuntaje() {
         return this.puntaje;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getSegundosTotalesPartida()
+     */
     @Override
     public int getSegundosTotalesPartida() {
         return (int) Duration.between(this.inicio, this.finalizacion).getSeconds();
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getEstadoFinalizado()
+     */
     @Override
     public boolean getEstadoFinalizado() {
         return this.estadoFinalizado;
     }
 
+    /* (non-Javadoc)
+     * @see com.zsnails.game.iRegistro#getJugador()
+     */
     @Override
     public iJugador getJugador() {
         return this.jugador;
