@@ -3,12 +3,8 @@ package com.zsnails.poo;
 import java.io.InvalidObjectException;
 
 import com.zsnails.GameCenter.GameCenter;
-import com.zsnails.hangmanGame.HangmanGameUI;
-import com.zsnails.hiddenNumber.HiddenNumberGameUI;
+import com.zsnails.auth.Auth;
 import com.zsnails.login.LoginUI;
-import com.zsnails.player.Player;
-import com.zsnails.snake.SnakeGame;
-import com.zsnails.tictactoe.TicTacToe;
 
 public class App {
 
@@ -37,6 +33,7 @@ public class App {
         System.out.println(center.findJugador("dog"));
 
         center.setVisible(true);*/
+        Auth.loadData();
         LoginUI login = new LoginUI();
         login.setVisible(true);
     }
