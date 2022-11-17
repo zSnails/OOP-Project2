@@ -111,7 +111,13 @@ public class statsGameUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * A method that is called when the user selects a game from the combo box. It gets the selected
+        game and then gets the top 10 players for that game. It then displays the top 10 players in the
+        text area.
+     */
+    
     private void cmbGamesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cmbGamesActionPerformed
         String select = (String) cmbGames.getSelectedItem();
         iJuego game = null;
@@ -142,6 +148,9 @@ public class statsGameUI extends javax.swing.JFrame {
         txtStats.setText(txt);
     }// GEN-LAST:event_cmbGamesActionPerformed
 
+    /**
+     * It gets a list of games from a database and adds them to a combobox
+     */
     private void cmbNames() {
         try {
             listGames = GameCenter.getInstance().getJuegos();

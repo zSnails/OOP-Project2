@@ -62,7 +62,7 @@ public class HangmanGameUI extends JFrame implements iJuego {
 
     private iCentroJuego gameCenter;
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnA;
 
     private javax.swing.JButton btnB;
@@ -205,6 +205,7 @@ public class HangmanGameUI extends JFrame implements iJuego {
         words_list = new ArrayList<String>();
         this.player.registrarPuntaje(score.getPuntaje(), this);
         this.gameCenter.addRegistro(score);
+        
         enableButtons();
     }
 
@@ -1692,7 +1693,7 @@ public class HangmanGameUI extends JFrame implements iJuego {
         }
     }
 
-	// End of variables declaration//GEN-END:variables
+	// End of variables declaration                   
     /**
      * enable all buttons after playing
      */

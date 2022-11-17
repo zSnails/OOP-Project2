@@ -166,6 +166,11 @@ public class LoginUI extends javax.swing.JFrame {
         System.exit(0);
     }// GEN-LAST:event_btnExitActionPerformed
 
+    
+   /**
+    * Creating a new player object and then creating a new instance of the game center.
+    * @param evt
+    */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
         if (Auth.authenticate(txtUserName.getText(), txtPassword.getText())) {
 
