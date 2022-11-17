@@ -125,7 +125,7 @@ public class statsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStatsPActionPerformed
 
     private void btnGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameActionPerformed
-        statsPersonalUI p = new statsPersonalUI();
+        statsGameUI p = new statsGameUI();
         p.setState(2);
         p.setVisible(true);
     }//GEN-LAST:event_btnGameActionPerformed
